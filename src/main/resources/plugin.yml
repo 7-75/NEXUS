@@ -1,0 +1,11 @@
+name: FactionsNexus
+version: '${project.version}'
+main: brawl.factionsnexus.FactionsNexus
+api-version: 1.17
+prefix: Faction Nexus
+depend:
+  - "Factions"
+  - "Magic"
+authors: [ millemila ]
+description: Faction nexus to protect factions from other players
+website: brawlmc.com
