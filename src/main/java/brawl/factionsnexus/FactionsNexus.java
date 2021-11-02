@@ -19,7 +19,7 @@ public final class FactionsNexus extends JavaPlugin {
     BufferedWriter          nexusesWriter;
     Gson                    gson;
 
-    public static HashMap nexuses;
+    public HashMap nexuses;
 
     @Override
     public void onEnable() {
@@ -71,16 +71,9 @@ public final class FactionsNexus extends JavaPlugin {
 
         pluginManager.registerEvents(new FactionCreateListener(this, magicAPI), this);
         pluginManager.registerEvents(new FactionSetHomeListener(this), this);
-        try
-        {
-            pluginManager.registerEvents(new FactionLeaveListener(this, magicAPI),this);
-            pluginManager.registerEvents(new FactionDisbandListener(this, magicAPI), this);
-            pluginManager.registerEvents(new BlockPlaceListener(this, magicAPI), this);
-
-        } catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+        pluginManager.registerEvents(new FactionLeaveListener(this, magicAPI, nexuses),this);
+        pluginManager.registerEvents(new FactionDisbandListener(this, magicAPI, nexuses), this);
+        pluginManager.registerEvents(new BlockPlaceListener(this, magicAPI, nexuses), this);
     }
 
 }

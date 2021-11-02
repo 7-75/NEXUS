@@ -18,26 +18,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class BlockPlaceListener implements Listener {
 
-    Wand            beaconWandTemplate;
-    Material        beaconWandMaterial;
-    String          beaconWandTemplateName;
-    MagicAPI        magicAPI;
+    Wand                        beaconWandTemplate;
+    Material                    beaconWandMaterial;
+    String                      beaconWandTemplateName;
 
-    Gson            gson;
-    BufferedWriter  writer;
+    MagicAPI                    magicAPI;
+    HashMap                     nexuses;
 
-    String          youCannotPlaceWhileNotInAFactionError;
-    String          youCannotPlaceInsideUnclaimedError;
+    String                      youCannotPlaceWhileNotInAFactionError;
+    String                      youCannotPlaceInsideUnclaimedError;
 
-        public BlockPlaceListener(JavaPlugin plugin, MagicAPI magicAPI) throws IOException {
+
+        public BlockPlaceListener(JavaPlugin plugin, MagicAPI magicAPI, HashMap nexuses) {
         this.magicAPI                               = magicAPI;
-
-        gson                                        = new Gson();
-        writer                                      = new BufferedWriter(new FileWriter("Nexuses.json"));
+        this.nexuses                                = nexuses;
 
         beaconWandTemplateName                      = plugin.getConfig().getString("NameOfTheBeaconWand");
         youCannotPlaceWhileNotInAFactionError       = plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
@@ -48,7 +48,7 @@ public class BlockPlaceListener implements Listener {
     }
 
     @EventHandler
-    public void BlockPlaceEvent(BlockPlaceEvent event) throws IOException {
+    public void BlockPlaceEvent(BlockPlaceEvent event) {
 
         Block       placedBlock         = event.getBlockPlaced();
         Material    placedMaterial      = placedBlock.getBlockData().getMaterial();
@@ -78,7 +78,7 @@ public class BlockPlaceListener implements Listener {
         else if (beaconIsInsideClaim)
         {
             faction.setHome(placedBlockLocation);
-            FactionsNexus.nexuses.put(faction, placedBlockLocation);
+            nexuses.put(faction, placedBlockLocation);
         }
         else
         {

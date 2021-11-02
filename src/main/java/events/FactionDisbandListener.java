@@ -5,6 +5,7 @@ import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FactionDisbandEvent;
+import it.unimi.dsi.fastutil.Hash;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
@@ -12,16 +13,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import util.RemoveNexusFromInventory;
 
+import java.util.HashMap;
+
 
 public class FactionDisbandListener implements Listener {
 
+    HashMap                 nexuses;
     String                  disbandFactionError;
     Wand                    nexus;
     ItemStack               nexusItemStack;
     String                  nameOfTheBeaconWand;
     RemoveNexusFromInventory removeNexusFromInventory;
 
-    public FactionDisbandListener(JavaPlugin plugin, MagicAPI magicAPI) {
+    public FactionDisbandListener(JavaPlugin plugin, MagicAPI magicAPI, HashMap nexuses) {
         disbandFactionError = plugin.getConfig().getString("disbandFactionError");
         nameOfTheBeaconWand = plugin.getConfig().getString("nameOfTheBeaconWand");
 
@@ -39,7 +43,7 @@ public class FactionDisbandListener implements Listener {
         Faction     faction                 = event.getFaction();
 
         removeNexusFromInventory.remove(inventory);
-        FactionsNexus.nexuses.remove(faction);
+        nexuses.remove(faction);
 
 
     }
