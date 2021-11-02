@@ -1,9 +1,10 @@
 package brawl.factionsnexus;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.massivecraft.factions.Faction;
 import events.*;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
@@ -17,30 +18,40 @@ import java.util.HashMap;
 public final class FactionsNexus extends JavaPlugin {
 
     MagicAPI                magicAPI;
-    BufferedReader          nexusesReader;
-    BufferedWriter          nexusesWriter;
-    Gson                    gson;
+    ObjectMapper            objectMapper;
+    String                  path;
 
-    public static HashMap<Faction, Location> nexuses;
+    public static HashMap nexuses;
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        writeDefaultConfig();
 
-        gson                    = new Gson();
         magicAPI                = getMagicAPI();
+        path                    = "plugins/FactionsNexus/nexuses.json";
+        objectMapper            = new ObjectMapper();
 
+        writeDefaultConfig();
+        registerListeners();
+        readNexuses();
+
+    }
+
+    private void readNexuses()
+    {
         try {
-            nexusesWriter       = new BufferedWriter(new FileWriter("nexuses.json"));
-            nexusesReader       = new BufferedReader(new FileReader("nexuses.json"));
-            registerListeners();
+            nexuses = objectMapper.readValue(new File(path), HashMap.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        nexuses = gson.fromJson(nexusesReader, HashMap.class);
-
+    private void writeNexuses()
+    {
+        try {
+            objectMapper.writeValue(new File(path), nexuses);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     MagicAPI getMagicAPI() {
@@ -55,11 +66,8 @@ public final class FactionsNexus extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        try {
-            nexusesWriter.write(gson.toJson(nexuses));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writeNexuses();
+
     }
 
     private void writeDefaultConfig()
@@ -67,7 +75,7 @@ public final class FactionsNexus extends JavaPlugin {
         this.saveDefaultConfig();
     }
 
-    private void registerListeners() throws FileNotFoundException
+    private void registerListeners()
     {
         PluginManager pluginManager = getServer().getPluginManager();
 

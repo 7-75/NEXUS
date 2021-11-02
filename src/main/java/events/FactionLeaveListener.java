@@ -11,28 +11,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import util.RemoveNexusFromInventory;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import util.RemoveNexus;
 
 public class FactionLeaveListener implements Listener {
 
     String                      lastPlayerInFactionError;
-    BufferedReader              reader;
     Wand                        nexus;
     ItemStack                   nexusItemStack;
     String                      nameOfTheBeaconWand;
-    RemoveNexusFromInventory    removeNexusFromInventory;
+    RemoveNexus removeNexusFromInventory;
 
-    public FactionLeaveListener(JavaPlugin plugin, MagicAPI magicAPI) throws FileNotFoundException {
+    public FactionLeaveListener(JavaPlugin plugin, MagicAPI magicAPI) {
         lastPlayerInFactionError    = plugin.getConfig().getString("lastPlayerInFactionError");
         nameOfTheBeaconWand         = plugin.getConfig().getString("nameOfTheBeaconWand");
         nexus                       = magicAPI.createWand(nameOfTheBeaconWand);
         nexusItemStack              = nexus.getItem();
-        reader                      = new BufferedReader(new FileReader("Nexuses.json"));
-        removeNexusFromInventory    = new RemoveNexusFromInventory(magicAPI);
+        removeNexusFromInventory    = new RemoveNexus(magicAPI);
     }
 
     @EventHandler
@@ -44,7 +38,7 @@ public class FactionLeaveListener implements Listener {
 
         if (faction.getFPlayers().size() == 1)
         {
-            removeNexusFromInventory.remove(inventory);
+            removeNexusFromInventory.fromInventory(inventory);
             FactionsNexus.nexuses.remove(faction);
 
         }

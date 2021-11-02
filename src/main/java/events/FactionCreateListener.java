@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import util.RemoveNexusFromInventory;
+import util.RemoveNexus;
 
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ public class FactionCreateListener implements Listener {
     String                      nameOfTheBeaconWand;
     Wand                        nexus;
     ItemStack                   nexusItemStack;
-    RemoveNexusFromInventory    removeNexusFromInventory;
+    RemoveNexus removeNexusFromInventory;
 
     public FactionCreateListener(JavaPlugin plugin, MagicAPI magicAPI)
     {
@@ -26,7 +26,7 @@ public class FactionCreateListener implements Listener {
         nameOfTheBeaconWand             = plugin.getConfig().getString("NameOfTheBeaconWand");
         nexus                           = magicAPI.createWand(nameOfTheBeaconWand);
         nexusItemStack                  = nexus.getItem();
-        removeNexusFromInventory        = new RemoveNexusFromInventory(magicAPI);
+        removeNexusFromInventory        = new RemoveNexus(magicAPI);
     }
 
     @EventHandler
@@ -35,7 +35,7 @@ public class FactionCreateListener implements Listener {
         Player      player              = event.getFPlayer().getPlayer();
         Inventory   inventory           = player.getInventory();
 
-        removeNexusFromInventory.remove(inventory);
+        removeNexusFromInventory.fromInventory(inventory);
         inventory.addItem(Objects.requireNonNull(nexus.getItem()));
 
 
