@@ -1,7 +1,7 @@
 package events;
 
 import brawl.factionsnexus.FactionsNexus;
-import com.elmakers.mine.bukkit.api.magic.MagicAPI;
+import brawl.factionsnexus.NexusController;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
@@ -10,8 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-import util.RemoveNexus;
+import util.NexusOperations;
 
 public class FactionLeaveListener implements Listener {
 
@@ -19,18 +18,18 @@ public class FactionLeaveListener implements Listener {
     Wand                        nexus;
     ItemStack                   nexusItemStack;
     String                      nameOfTheBeaconWand;
-    RemoveNexus removeNexusFromInventory;
+    NexusOperations removeNexusFromInventory;
 
-    public FactionLeaveListener(JavaPlugin plugin, MagicAPI magicAPI) {
-        lastPlayerInFactionError    = plugin.getConfig().getString("lastPlayerInFactionError");
-        nameOfTheBeaconWand         = plugin.getConfig().getString("nameOfTheBeaconWand");
-        nexus                       = magicAPI.createWand(nameOfTheBeaconWand);
+    public FactionLeaveListener(NexusController nexusController) {
+        lastPlayerInFactionError    = nexusController.plugin.getConfig().getString("lastPlayerInFactionError");
+        nameOfTheBeaconWand         = nexusController.plugin.getConfig().getString("nameOfTheBeaconWand");
+        nexus                       = nexusController.magicAPI.createWand(nameOfTheBeaconWand);
         nexusItemStack              = nexus.getItem();
-        removeNexusFromInventory    = new RemoveNexus(magicAPI);
+        removeNexusFromInventory    = new NexusOperations(nexusController.plugin, nexusController.magicAPI);
     }
 
     @EventHandler
-    public void FactionLeave (FPlayerLeaveEvent event) {
+    public void factionLeave (FPlayerLeaveEvent event) {
 
         FPlayer     fPlayer             = event.getfPlayer();
         Faction     faction             = fPlayer.getFaction();
@@ -38,7 +37,7 @@ public class FactionLeaveListener implements Listener {
 
         if (faction.getFPlayers().size() == 1)
         {
-            removeNexusFromInventory.fromInventory(inventory);
+            removeNexusFromInventory.removeFromPlayer(inventory);
             FactionsNexus.nexuses.remove(faction);
 
         }

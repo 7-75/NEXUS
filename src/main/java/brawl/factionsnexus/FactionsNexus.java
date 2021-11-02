@@ -1,17 +1,16 @@
 package brawl.factionsnexus;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.massivecraft.factions.Faction;
 import events.*;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 
@@ -39,7 +38,8 @@ public final class FactionsNexus extends JavaPlugin {
     private void readNexuses()
     {
         try {
-            nexuses = objectMapper.readValue(new File(path), HashMap.class);
+            nexuses = objectMapper.readValue(Paths.get(path).toFile(), new TypeReference<HashMap>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,8 +47,10 @@ public final class FactionsNexus extends JavaPlugin {
 
     private void writeNexuses()
     {
+        System.out.println(nexuses);
+
         try {
-            objectMapper.writeValue(new File(path), nexuses);
+            objectMapper.writeValue(Paths.get(path).toFile(), nexuses);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -79,11 +81,17 @@ public final class FactionsNexus extends JavaPlugin {
     {
         PluginManager pluginManager = getServer().getPluginManager();
 
-        pluginManager.registerEvents(new FactionCreateListener(this, magicAPI), this);
-        pluginManager.registerEvents(new FactionSetHomeListener(this), this);
-        pluginManager.registerEvents(new FactionLeaveListener(this, magicAPI),this);
-        pluginManager.registerEvents(new FactionDisbandListener(this, magicAPI), this);
-        pluginManager.registerEvents(new BlockPlaceListener(this, magicAPI, nexuses), this);
+        NexusController nexusController = new NexusController(getMagicAPI(),this);
+
+        pluginManager.registerEvents(new FactionCreateListener(nexusController), this);
+        pluginManager.registerEvents(new FactionSetHomeListener(nexusController), this);
+        pluginManager.registerEvents(new FactionLeaveListener(nexusController),this);
+        pluginManager.registerEvents(new FactionDisbandListener(nexusController), this);
+        pluginManager.registerEvents(new BlockPlaceListener(nexusController), this);
+        pluginManager.registerEvents(new BlockBreakListener(nexusController),this);
+        pluginManager.registerEvents(new FactionUnclaimListener(nexusController),this);
+        pluginManager.registerEvents(new FactionUnclaimAllListener(nexusController),this);
+
     }
 
 }
