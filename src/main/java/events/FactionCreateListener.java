@@ -1,24 +1,25 @@
 package events;
 
+import brawl.factionsnexus.FactionsNexus;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.event.FactionCreateEvent;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import util.RemoveNexusFromInventory;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class FactionCreateListener implements Listener {
 
-    String      nameOfTheBeaconWand;
-    Wand        nexus;
-    ItemStack   nexusItemStack;
+    String                      nameOfTheBeaconWand;
+    Wand                        nexus;
+    ItemStack                   nexusItemStack;
+    RemoveNexusFromInventory    removeNexusFromInventory;
 
     public FactionCreateListener(JavaPlugin plugin, MagicAPI magicAPI)
     {
@@ -26,6 +27,7 @@ public class FactionCreateListener implements Listener {
         nameOfTheBeaconWand             = plugin.getConfig().getString("NameOfTheBeaconWand");
         nexus                           = magicAPI.createWand(nameOfTheBeaconWand);
         nexusItemStack                  = nexus.getItem();
+        removeNexusFromInventory        = new RemoveNexusFromInventory(magicAPI);
     }
 
     @EventHandler
@@ -33,14 +35,8 @@ public class FactionCreateListener implements Listener {
     {
         Player      player              = event.getFPlayer().getPlayer();
         Inventory   inventory           = player.getInventory();
-        ItemStack[] inventoryItemStacks = inventory.getContents();
 
-        Arrays
-                .stream(inventoryItemStacks)
-                .filter(Objects::nonNull)
-                .filter(item -> item.equals(nexusItemStack))
-                .forEach(item -> item.setAmount(-1));
-
+        removeNexusFromInventory.remove(inventory);
         inventory.addItem(Objects.requireNonNull(nexus.getItem()));
 
 

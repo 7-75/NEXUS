@@ -1,3 +1,6 @@
 NameOfTheBeaconWand: "Nexus"
 youCannotPlaceWhileNotInAFactionError: "You cannot place a beacon block while not being in a faction."
 youCannotPlaceInsideUnclaimedError: "You cannot place inside unclaimed territory."
+cannotSetHomeManuallyError: "You cannot set your home manually, use a nexus block."
+lastPlayerInFactionError: "You cannot disband the faction by leaving it, break the nexus block instead."
+disbandFactionError: "You cannot disband the faction directly, break the nexus block instead."
