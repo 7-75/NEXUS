@@ -16,11 +16,9 @@ import util.RemoveNexusFromInventory;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.HashMap;
 
 public class FactionLeaveListener implements Listener {
 
-    HashMap                     nexuses;
     String                      lastPlayerInFactionError;
     BufferedReader              reader;
     Wand                        nexus;
@@ -28,7 +26,7 @@ public class FactionLeaveListener implements Listener {
     String                      nameOfTheBeaconWand;
     RemoveNexusFromInventory    removeNexusFromInventory;
 
-    public FactionLeaveListener(JavaPlugin plugin, MagicAPI magicAPI, HashMap nexuses) throws FileNotFoundException {
+    public FactionLeaveListener(JavaPlugin plugin, MagicAPI magicAPI) throws FileNotFoundException {
         lastPlayerInFactionError    = plugin.getConfig().getString("lastPlayerInFactionError");
         nameOfTheBeaconWand         = plugin.getConfig().getString("nameOfTheBeaconWand");
         nexus                       = magicAPI.createWand(nameOfTheBeaconWand);
@@ -47,7 +45,7 @@ public class FactionLeaveListener implements Listener {
         if (faction.getFPlayers().size() == 1)
         {
             removeNexusFromInventory.remove(inventory);
-            nexuses.remove(faction);
+            FactionsNexus.nexuses.remove(faction);
 
         }
 

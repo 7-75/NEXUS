@@ -3,7 +3,6 @@ package events;
 import brawl.factionsnexus.FactionsNexus;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.api.wand.Wand;
-import com.google.gson.Gson;
 import com.massivecraft.factions.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,10 +14,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -29,7 +24,6 @@ public class BlockPlaceListener implements Listener {
     String                      beaconWandTemplateName;
 
     MagicAPI                    magicAPI;
-    HashMap                     nexuses;
 
     String                      youCannotPlaceWhileNotInAFactionError;
     String                      youCannotPlaceInsideUnclaimedError;
@@ -37,7 +31,6 @@ public class BlockPlaceListener implements Listener {
 
         public BlockPlaceListener(JavaPlugin plugin, MagicAPI magicAPI, HashMap nexuses) {
         this.magicAPI                               = magicAPI;
-        this.nexuses                                = nexuses;
 
         beaconWandTemplateName                      = plugin.getConfig().getString("NameOfTheBeaconWand");
         youCannotPlaceWhileNotInAFactionError       = plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
@@ -78,7 +71,7 @@ public class BlockPlaceListener implements Listener {
         else if (beaconIsInsideClaim)
         {
             faction.setHome(placedBlockLocation);
-            nexuses.put(faction, placedBlockLocation);
+            FactionsNexus.nexuses.put(faction, placedBlockLocation);
         }
         else
         {

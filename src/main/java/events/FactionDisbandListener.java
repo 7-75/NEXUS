@@ -18,14 +18,13 @@ import java.util.HashMap;
 
 public class FactionDisbandListener implements Listener {
 
-    HashMap                 nexuses;
     String                  disbandFactionError;
     Wand                    nexus;
     ItemStack               nexusItemStack;
     String                  nameOfTheBeaconWand;
     RemoveNexusFromInventory removeNexusFromInventory;
 
-    public FactionDisbandListener(JavaPlugin plugin, MagicAPI magicAPI, HashMap nexuses) {
+    public FactionDisbandListener(JavaPlugin plugin, MagicAPI magicAPI) {
         disbandFactionError = plugin.getConfig().getString("disbandFactionError");
         nameOfTheBeaconWand = plugin.getConfig().getString("nameOfTheBeaconWand");
 
@@ -43,7 +42,7 @@ public class FactionDisbandListener implements Listener {
         Faction     faction                 = event.getFaction();
 
         removeNexusFromInventory.remove(inventory);
-        nexuses.remove(faction);
+        FactionsNexus.nexuses.remove(faction);
 
 
     }

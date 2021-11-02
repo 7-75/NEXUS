@@ -2,8 +2,10 @@ package brawl.factionsnexus;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.google.gson.Gson;
+import com.massivecraft.factions.Faction;
 import events.*;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,7 +21,7 @@ public final class FactionsNexus extends JavaPlugin {
     BufferedWriter          nexusesWriter;
     Gson                    gson;
 
-    public HashMap nexuses;
+    public static HashMap<Faction, Location> nexuses;
 
     @Override
     public void onEnable() {
@@ -71,8 +73,8 @@ public final class FactionsNexus extends JavaPlugin {
 
         pluginManager.registerEvents(new FactionCreateListener(this, magicAPI), this);
         pluginManager.registerEvents(new FactionSetHomeListener(this), this);
-        pluginManager.registerEvents(new FactionLeaveListener(this, magicAPI, nexuses),this);
-        pluginManager.registerEvents(new FactionDisbandListener(this, magicAPI, nexuses), this);
+        pluginManager.registerEvents(new FactionLeaveListener(this, magicAPI),this);
+        pluginManager.registerEvents(new FactionDisbandListener(this, magicAPI), this);
         pluginManager.registerEvents(new BlockPlaceListener(this, magicAPI, nexuses), this);
     }
 

@@ -1,6 +1,5 @@
 package events;
 
-import brawl.factionsnexus.FactionsNexus;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.event.FactionCreateEvent;
