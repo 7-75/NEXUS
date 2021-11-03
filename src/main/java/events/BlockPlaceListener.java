@@ -1,8 +1,6 @@
 package events;
 
-import brawl.factionsnexus.FactionsNexus;
 import brawl.factionsnexus.NexusController;
-import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FPlayer;
@@ -24,21 +22,17 @@ public class BlockPlaceListener implements Listener {
     Wand                        beaconWandTemplate;
     Material                    beaconWandMaterial;
     String                      beaconWandTemplateName;
-
-    MagicAPI                    magicAPI;
-
     String                      youCannotPlaceWhileNotInAFactionError;
     String                      youCannotPlaceInsideUnclaimedError;
+    String                      yourHomeWasSetMessage;
 
+        public BlockPlaceListener() {
 
-        public BlockPlaceListener(NexusController nexusController) {
-            magicAPI = nexusController.magicAPI;
-
-            youCannotPlaceInsideUnclaimedError          = nexusController.plugin.getConfig().getString("youCannotPlaceInsideUnclaimedError");
-            youCannotPlaceWhileNotInAFactionError       = nexusController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
-
-            beaconWandTemplateName                      = nexusController.plugin.getConfig().getString("NameOfTheBeaconWand");
-            beaconWandTemplate                          = nexusController.magicAPI.createWand(beaconWandTemplateName);
+            youCannotPlaceInsideUnclaimedError          = NexusController.plugin.getConfig().getString("youCannotPlaceInsideUnclaimedError");
+            youCannotPlaceWhileNotInAFactionError       = NexusController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
+            yourHomeWasSetMessage                       = NexusController.plugin.getConfig().getString("yourHomeWasSetMessage");
+            beaconWandTemplateName                      = NexusController.plugin.getConfig().getString("NameOfTheBeaconWand");
+            beaconWandTemplate                          = NexusController.magicAPI.createWand(beaconWandTemplateName);
             beaconWandMaterial                          = Objects.requireNonNull(beaconWandTemplate.getItem()).getType();
     }
 
@@ -50,7 +44,7 @@ public class BlockPlaceListener implements Listener {
             return;
 
         ItemStack   placedItem              = event.getItemInHand();
-        if (!magicAPI.isWand(placedItem))
+        if (!NexusController.magicAPI.isWand(placedItem))
             return;
 
         Player      player              = event.getPlayer();
@@ -72,8 +66,9 @@ public class BlockPlaceListener implements Listener {
         else if (beaconIsInsideClaim)
         {
             faction.setHome(placedBlockLocation);
-            FactionsNexus.nexuses.put(faction, placedBlockLocation);
-            System.out.println(FactionsNexus.nexuses);
+            NexusController.nexuses.put(faction, placedBlockLocation);
+            player.sendMessage(yourHomeWasSetMessage);
+
         }
         else
         {

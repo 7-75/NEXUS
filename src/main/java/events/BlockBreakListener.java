@@ -1,6 +1,5 @@
 package events;
 
-import brawl.factionsnexus.FactionsNexus;
 import brawl.factionsnexus.NexusController;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.data.MemoryFactions;
@@ -16,9 +15,9 @@ public class BlockBreakListener implements Listener {
 
     String factionHasBeenDefeatedMessage;
 
-    public BlockBreakListener(NexusController nexusController)
+    public BlockBreakListener()
     {
-        factionHasBeenDefeatedMessage = nexusController.plugin.getConfig().getString("factionHasBeenDefeatedMessage");
+        factionHasBeenDefeatedMessage = NexusController.plugin.getConfig().getString("factionHasBeenDefeatedMessage");
     }
 
     @EventHandler
@@ -30,17 +29,17 @@ public class BlockBreakListener implements Listener {
         if (!brokenMaterial.equals(Material.BEACON))
             return;
 
-        if (!FactionsNexus.nexuses.containsValue(brokenBlockLocation)) {
+        if (!NexusController.nexuses.containsValue(brokenBlockLocation)) {
             return;
         }
 
-        Faction faction                 = (Faction) util.KeyByValue.getKeyByValue(FactionsNexus.nexuses,brokenBlockLocation);
-        FactionsNexus.nexuses.remove(faction);
+        Faction faction                 = (Faction) util.KeyByValue.getKeyByValue(NexusController.nexuses,brokenBlockLocation);
+        NexusController.nexuses.remove(faction);
 
-        assert faction != null;
+        String factionId = faction.getId();
         String factionTag = faction.getTag();
 
-        MemoryFactions.getInstance().removeFaction(factionTag);
+        MemoryFactions.getInstance().removeFaction(factionId);
 
         Bukkit.getOnlinePlayers()
                 .forEach(player -> {

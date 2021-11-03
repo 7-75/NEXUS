@@ -1,6 +1,5 @@
 package events;
 
-import brawl.factionsnexus.NexusController;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimAllEvent;
@@ -13,10 +12,6 @@ public class FactionUnclaimAllListener implements Listener {
 
     NexusOperations nexusOperations;
 
-    public FactionUnclaimAllListener(NexusController nexusController)
-    {
-        nexusOperations = new NexusOperations(nexusController.plugin, nexusController.magicAPI);
-    }
 
     @EventHandler
     public void factionUnclaim(LandUnclaimAllEvent event)

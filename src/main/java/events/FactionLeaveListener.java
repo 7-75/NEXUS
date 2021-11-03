@@ -1,6 +1,5 @@
 package events;
 
-import brawl.factionsnexus.FactionsNexus;
 import brawl.factionsnexus.NexusController;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.FPlayer;
@@ -18,14 +17,12 @@ public class FactionLeaveListener implements Listener {
     Wand                        nexus;
     ItemStack                   nexusItemStack;
     String                      nameOfTheBeaconWand;
-    NexusOperations removeNexusFromInventory;
 
-    public FactionLeaveListener(NexusController nexusController) {
-        lastPlayerInFactionError    = nexusController.plugin.getConfig().getString("lastPlayerInFactionError");
-        nameOfTheBeaconWand         = nexusController.plugin.getConfig().getString("nameOfTheBeaconWand");
-        nexus                       = nexusController.magicAPI.createWand(nameOfTheBeaconWand);
+    public FactionLeaveListener() {
+        lastPlayerInFactionError    = NexusController.plugin.getConfig().getString("lastPlayerInFactionError");
+        nameOfTheBeaconWand         = NexusController.plugin.getConfig().getString("nameOfTheBeaconWand");
+        nexus                       = NexusController.magicAPI.createWand(nameOfTheBeaconWand);
         nexusItemStack              = nexus.getItem();
-        removeNexusFromInventory    = new NexusOperations(nexusController.plugin, nexusController.magicAPI);
     }
 
     @EventHandler
@@ -37,8 +34,8 @@ public class FactionLeaveListener implements Listener {
 
         if (faction.getFPlayers().size() == 1)
         {
-            removeNexusFromInventory.removeFromPlayer(inventory);
-            FactionsNexus.nexuses.remove(faction);
+            NexusOperations.removeFromPlayer(inventory);
+            NexusController.nexuses.remove(faction);
 
         }
 

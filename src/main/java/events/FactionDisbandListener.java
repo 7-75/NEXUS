@@ -1,6 +1,5 @@
 package events;
 
-import brawl.factionsnexus.FactionsNexus;
 import brawl.factionsnexus.NexusController;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.Faction;
@@ -18,15 +17,12 @@ public class FactionDisbandListener implements Listener {
     Wand                    nexus;
     ItemStack               nexusItemStack;
     String                  nameOfTheBeaconWand;
-    NexusOperations nexusOperations;
 
-    public FactionDisbandListener(NexusController nexusController) {
-        disbandFactionError = nexusController.plugin.getConfig().getString("disbandFactionError");
-        nameOfTheBeaconWand = nexusController.plugin.getConfig().getString("nameOfTheBeaconWand");
+    public FactionDisbandListener() {
+        disbandFactionError = NexusController.plugin.getConfig().getString("disbandFactionError");
+        nameOfTheBeaconWand = NexusController.plugin.getConfig().getString("nameOfTheBeaconWand");
 
-        nexusOperations     = new NexusOperations(nexusController.plugin, nexusController.magicAPI);
-
-        nexus               = nexusController.magicAPI.createWand(nameOfTheBeaconWand);
+        nexus               = NexusController.magicAPI.createWand(nameOfTheBeaconWand);
         nexusItemStack      = nexus.getItem();
     }
 
@@ -38,10 +34,10 @@ public class FactionDisbandListener implements Listener {
         Faction     faction                 = event.getFaction();
 
 
-        nexusOperations.removeFromPlayer(inventory);
-        nexusOperations.removeFromMap(faction);
+        NexusOperations.removeFromPlayer(inventory);
+        NexusOperations.removeFromMap(faction);
 
-        FactionsNexus.nexuses.remove(faction);
+        NexusController.nexuses.remove(faction);
 
 
     }

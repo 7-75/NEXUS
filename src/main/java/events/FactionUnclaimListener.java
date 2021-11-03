@@ -1,6 +1,5 @@
 package events;
 
-import brawl.factionsnexus.FactionsNexus;
 import brawl.factionsnexus.NexusController;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
@@ -18,10 +17,9 @@ public class FactionUnclaimListener implements Listener {
     HashMap<Player, Boolean>        alreadyWarned;
     String                          unclaimWarnMessage;
 
-    public FactionUnclaimListener(NexusController nexusController)
+    public FactionUnclaimListener()
     {
-        nexusOperations         = new NexusOperations(nexusController.plugin, nexusController.magicAPI);
-        unclaimWarnMessage      = nexusController.plugin.getConfig().getString("unclaimWarnMessage");
+        unclaimWarnMessage      = NexusController.plugin.getConfig().getString("unclaimWarnMessage");
         alreadyWarned           = new HashMap<>();
     }
 
@@ -31,7 +29,7 @@ public class FactionUnclaimListener implements Listener {
         FPlayer     fPlayer                     = event.getfPlayer();
         Player      player                      = fPlayer.getPlayer();
         Faction     faction                     = event.getFaction();
-        Location    location                    = (Location) FactionsNexus.nexuses.get(faction);
+        Location    location                    = (Location) NexusController.nexuses.get(faction);
         boolean     NexusIsInChunk              = event.getLocation().isInChunk(location);
         boolean     playerWasAlreadyWarned      = alreadyWarned.containsKey(player);
 
@@ -56,6 +54,6 @@ public class FactionUnclaimListener implements Listener {
             return;
         }
 
-        nexusOperations.removeFromMap(faction);
+        NexusOperations.removeFromMap(faction);
     }
 }

@@ -11,9 +11,9 @@ public class FactionSetHomeListener implements Listener {
 
     String cannotSetHomeManuallyError;
 
-    public FactionSetHomeListener(NexusController nexusController)
+    public FactionSetHomeListener()
     {
-        cannotSetHomeManuallyError = nexusController.plugin.getConfig().getString("cannotSetHomeManuallyError");
+        cannotSetHomeManuallyError = NexusController.plugin.getConfig().getString("cannotSetHomeManuallyError");
     }
 
     @EventHandler
@@ -21,7 +21,11 @@ public class FactionSetHomeListener implements Listener {
     {
         String message          =   event.getMessage();
         String commandName      =   message.split(" ")[0];
+        int commandLenght       =   message.split(" ").length;
+
         if (!Objects.equals(commandName, "/f"))
+            return;
+        if (commandLenght < 2)
             return;
         String commandArgument  =   message.split(" ")[1];
         if (Objects.equals(commandArgument, "sethome"))
