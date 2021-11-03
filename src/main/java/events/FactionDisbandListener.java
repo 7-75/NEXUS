@@ -36,7 +36,6 @@ public class FactionDisbandListener implements Listener {
 
         NexusOperations.removeFromPlayer(inventory);
         NexusOperations.removeFromMap(faction);
-
         NexusController.nexuses.remove(faction);
 
 

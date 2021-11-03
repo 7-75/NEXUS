@@ -39,6 +39,12 @@ public class NexusOperations {
 
     public static void removeFromMap(Faction faction)
     {
+
+        boolean nexusExistsOnMap = NexusController.nexuses.containsKey(faction);
+
+        if (!nexusExistsOnMap)
+            return;
+
         Location location = (Location) NexusController.nexuses.get(faction);
 
         location.getBlock()
