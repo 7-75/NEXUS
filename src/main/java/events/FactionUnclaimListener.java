@@ -41,6 +41,7 @@ public class FactionUnclaimListener implements Listener {
         {
             player.sendMessage(unclaimWarnMessage);
             alreadyWarned.put(player, true);
+            event.setCancelled(true);
             return;
         }
 
