@@ -1,6 +1,7 @@
 package brawl.factionsnexus;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
+import com.massivecraft.factions.Board;
 import com.massivecraft.factions.Factions;
 import events.*;
 import org.bukkit.Bukkit;
@@ -18,13 +19,21 @@ public final class FactionsNexus extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        nexusController = new NexusController(getMagicAPI(),this, getFactionsInstance());
+
+        nexusController = new NexusController(getMagicAPI(),this, getFactionsInstance(), getBoardInstance());
         nexusOperations = new NexusOperations();
 
         writeDefaultConfig();
         registerListeners();
-        NexusController.readNexuses();
 
+    }
+
+    Board getBoardInstance(){
+        Board board = Board.getInstance();
+        if (board == null){
+            return null;
+        }
+        return board;
     }
 
     Factions getFactionsInstance(){
@@ -32,7 +41,7 @@ public final class FactionsNexus extends JavaPlugin {
         if (factions == null){
             return null;
         }
-        return Factions.getInstance();
+        return factions;
     }
 
     MagicAPI getMagicAPI() {
@@ -46,8 +55,6 @@ public final class FactionsNexus extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
-        NexusController.writeNexuses();
 
     }
 

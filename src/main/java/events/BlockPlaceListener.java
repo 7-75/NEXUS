@@ -66,7 +66,6 @@ public class BlockPlaceListener implements Listener {
         else if (beaconIsInsideClaim)
         {
             faction.setHome(placedBlockLocation);
-            NexusController.nexuses.put(faction, placedBlockLocation);
             player.sendMessage(yourHomeWasSetMessage);
 
         }

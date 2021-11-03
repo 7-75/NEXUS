@@ -10,25 +10,22 @@ import util.NexusOperations;
 
 public class FactionUnclaimAllListener implements Listener {
 
-    NexusOperations nexusOperations;
-
-
     @EventHandler
     public void factionUnclaim(LandUnclaimAllEvent event)
     {
-        FPlayer fPlayer = event.getfPlayer();
-        Player player   = fPlayer.getPlayer();
-        Faction faction = fPlayer.getFaction();
+        FPlayer fPlayer     = event.getfPlayer();
+        Player player       = fPlayer.getPlayer();
+        Faction faction     = fPlayer.getFaction();
 
         try{
-            nexusOperations.addToInventory(player);
+            NexusOperations.addToInventory(player);
         } catch (Exception e) {
             player.sendMessage(e.getMessage());
             event.setCancelled(true);
             return;
         }
 
-        nexusOperations.removeFromMap(faction);
+        NexusOperations.removeFromMap(faction);
 
     }
 }

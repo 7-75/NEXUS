@@ -35,7 +35,6 @@ public class FactionLeaveListener implements Listener {
         if (faction.getFPlayers().size() == 1)
         {
             NexusOperations.removeFromPlayer(inventory);
-            NexusController.nexuses.remove(faction);
 
         }
 

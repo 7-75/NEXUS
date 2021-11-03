@@ -32,11 +32,11 @@ public class FactionDisbandListener implements Listener {
 
         Inventory   inventory               = event.getFPlayer().getPlayer().getInventory();
         Faction     faction                 = event.getFaction();
+        String      factionId               = faction.getId();
 
 
         NexusOperations.removeFromPlayer(inventory);
         NexusOperations.removeFromMap(faction);
-        NexusController.nexuses.remove(faction);
 
 
     }

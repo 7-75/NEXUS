@@ -13,7 +13,6 @@ import util.NexusOperations;
 import java.util.HashMap;
 
 public class FactionUnclaimListener implements Listener {
-    NexusOperations nexusOperations;
     HashMap<Player, Boolean>        alreadyWarned;
     String                          unclaimWarnMessage;
 
@@ -29,7 +28,7 @@ public class FactionUnclaimListener implements Listener {
         FPlayer     fPlayer                     = event.getfPlayer();
         Player      player                      = fPlayer.getPlayer();
         Faction     faction                     = event.getFaction();
-        Location    location                    = (Location) NexusController.nexuses.get(faction);
+        Location    location                    = faction.getHome().getBlock().getLocation();
         boolean     NexusIsInChunk              = event.getLocation().isInChunk(location);
         boolean     playerWasAlreadyWarned      = alreadyWarned.containsKey(player);
 
@@ -47,7 +46,7 @@ public class FactionUnclaimListener implements Listener {
 
         try
         {
-            nexusOperations.addToInventory(player);
+            NexusOperations.addToInventory(player);
         }catch (Exception e)
         {
             player.sendMessage(e.getMessage());
@@ -56,5 +55,6 @@ public class FactionUnclaimListener implements Listener {
         }
 
         NexusOperations.removeFromMap(faction);
+        NexusController.board.unclaimAll(faction.getId());
     }
 }

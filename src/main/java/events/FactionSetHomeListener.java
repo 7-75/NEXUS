@@ -21,11 +21,11 @@ public class FactionSetHomeListener implements Listener {
     {
         String message          =   event.getMessage();
         String commandName      =   message.split(" ")[0];
-        int commandLenght       =   message.split(" ").length;
+        int commandLength       =   message.split(" ").length;
 
         if (!Objects.equals(commandName, "/f"))
             return;
-        if (commandLenght < 2)
+        if (commandLength < 2)
             return;
         String commandArgument  =   message.split(" ")[1];
         if (Objects.equals(commandArgument, "sethome"))

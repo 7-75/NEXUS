@@ -2,7 +2,7 @@ package events;
 
 import brawl.factionsnexus.NexusController;
 import com.massivecraft.factions.Faction;
-import com.massivecraft.factions.data.MemoryFactions;
+import com.massivecraft.factions.Factions;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -22,24 +22,34 @@ public class BlockBreakListener implements Listener {
 
     @EventHandler
     public void blockBreak(BlockBreakEvent event) {
-        Block       brokenBlock            = event.getBlock();
-        Material    brokenMaterial         = event.getBlock().getType();
-        Location    brokenBlockLocation    = brokenBlock.getLocation();
+        Block       brokenBlock             = event.getBlock();
+        Material    brokenMaterial          = event.getBlock().getType();
+        Location    brokenBlockLocation     = brokenBlock.getLocation();
 
         if (!brokenMaterial.equals(Material.BEACON))
             return;
 
-        if (!NexusController.nexuses.containsValue(brokenBlockLocation)) {
+        Faction faction =
+
+                NexusController.factions.getAllFactions()
+                                .stream()
+                                .filter(Faction::hasHome)
+                                .filter(f -> f
+                                        .getHome()
+                                        .equals(brokenBlockLocation))
+                                .findFirst()
+                        .orElse(null);
+
+        if (faction == null)
             return;
-        }
 
-        Faction faction                 = (Faction) util.KeyByValue.getKeyByValue(NexusController.nexuses,brokenBlockLocation);
-        NexusController.nexuses.remove(faction);
+        String      factionId               = faction.getId();
+        String      factionTag              = faction.getTag();
 
-        String factionId = faction.getId();
-        String factionTag = faction.getTag();
+        if (!faction.getHome().equals(brokenBlockLocation))
+            return;
 
-        MemoryFactions.getInstance().removeFaction(factionId);
+        Factions.getInstance().removeFaction(factionId);
 
         Bukkit.getOnlinePlayers()
                 .forEach(player -> {

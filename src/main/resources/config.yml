@@ -6,5 +6,5 @@ lastPlayerInFactionError: "You cannot disband the faction by leaving it, break t
 disbandFactionError: "You cannot disband the faction directly, break the nexus block instead."
 factionHasBeenDefeatedMessage: "has been defeated!"
 InventoryFullError: "Your inventory is full, can't do that!"
-unclaimWarnMessage: "This is going to delete all the other claims in the faction! Type again to confirm."
+unclaimWarnMessage: "Unclaiming your nexus claim is going to delete all the other claims in the faction! Type again to confirm."
 yourHomeWasSetMessage: "Your home was set."
