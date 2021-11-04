@@ -5,6 +5,8 @@ import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.Faction;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -15,15 +17,22 @@ import java.util.Objects;
 public class NexusOperations {
     ItemStack       nexusItemStack;
     String          nameOfTheNexusWand;
+    static          String              parameterToBeProportionalToPower;
+    static          String              spellToCastFromTheNexus;
+    static          String              nexusMagicBlockTemplateKey;
     static          Wand                nexus;
-    static          String              InventoryFullError;
+    static          String              inventoryFullError;
 
     public NexusOperations()
     {
-        InventoryFullError              = NexusController.plugin.getConfig().getString("InventoryFullError");
-        nameOfTheNexusWand              = NexusController.plugin.getConfig().getString("NameOfTheBeaconWand");
-        nexus                           = NexusController.magicAPI.createWand(nameOfTheNexusWand);
-        nexusItemStack                  = nexus.getItem();
+        inventoryFullError                  = NexusController.plugin.getConfig().getString("inventoryFullError");
+        nameOfTheNexusWand                  = NexusController.plugin.getConfig().getString("nameOfTheBeaconWand");
+        nexusMagicBlockTemplateKey          = NexusController.plugin.getConfig().getString("nexusMagicBlockTemplateKey");
+        parameterToBeProportionalToPower    = NexusController.plugin.getConfig().getString("parameterToBeProportionalToPower");
+        spellToCastFromTheNexus             = NexusController.plugin.getConfig().getString("spellToCastFromTheNexus");
+
+        nexus                               = NexusController.magicAPI.createWand(nameOfTheNexusWand);
+        nexusItemStack                      = nexus.getItem();
     }
 
     public static void removeFromPlayer(Inventory inventory) {
@@ -55,12 +64,41 @@ public class NexusOperations {
         Inventory inventory = player.getInventory();
 
         if (player.getInventory().firstEmpty() == -1)
-            throw new Exception(InventoryFullError);
+            throw new Exception(inventoryFullError);
         else
         {
             inventory.addItem(Objects.requireNonNull(nexus.getItem()));
         }
 
+    }
+
+    public static void addMagicBlockToMap(Location location)
+    {
+
+        Faction faction     = NexusController.factions.getAllFactions()
+                .stream()
+                .filter(Faction::hasHome)
+                .filter(f -> f.getHome().equals(location))
+                .findFirst()
+                .orElse(null);
+
+        if (faction == null)
+            return;
+
+        double     power       = faction.getPower();
+
+        ConfigurationSection config = new MemoryConfiguration();
+        config.set("cast.spells", spellToCastFromTheNexus + " " + parameterToBeProportionalToPower + " " + power);
+
+        System.out.println(config);
+
+        NexusController.magicAPI.getController().addMagicBlock
+                (location, nexusMagicBlockTemplateKey, null, null, config);
+    }
+
+    public static  void removeMagicBlockFromMap(Location location)
+    {
+        NexusController.magicAPI.getController().removeMagicBlock(location);
     }
 
 }

@@ -28,13 +28,18 @@ public class FactionUnclaimListener implements Listener {
         FPlayer     fPlayer                     = event.getfPlayer();
         Player      player                      = fPlayer.getPlayer();
         Faction     faction                     = event.getFaction();
-        Location    location                    = faction.getHome().getBlock().getLocation();
-        boolean     NexusIsInChunk              = event.getLocation().isInChunk(location);
         boolean     playerWasAlreadyWarned      = alreadyWarned.containsKey(player);
 
+        if (!faction.hasHome())
+            return;
+
+
+        Location    location                    = faction.getHome().getBlock().getLocation();
+        boolean     NexusIsInChunk              = event.getLocation().isInChunk(location);
 
         if (!NexusIsInChunk)
             return;
+
 
         if (!playerWasAlreadyWarned)
         {

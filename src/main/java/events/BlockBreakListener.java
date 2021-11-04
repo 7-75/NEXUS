@@ -10,6 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import util.NexusOperations;
 
 public class BlockBreakListener implements Listener {
 
@@ -50,6 +51,7 @@ public class BlockBreakListener implements Listener {
             return;
 
         Factions.getInstance().removeFaction(factionId);
+        NexusOperations.removeMagicBlockFromMap(faction.getHome());
 
         Bukkit.getOnlinePlayers()
                 .forEach(player -> {

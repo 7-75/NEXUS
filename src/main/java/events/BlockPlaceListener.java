@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import util.NexusOperations;
 
 import java.util.Objects;
 
@@ -40,10 +41,12 @@ public class BlockPlaceListener implements Listener {
     public void blockPlace(BlockPlaceEvent event) {
         Block       placedBlock         = event.getBlockPlaced();
         Material    placedMaterial      = placedBlock.getBlockData().getMaterial();
+
         if (placedMaterial != beaconWandMaterial)
             return;
 
         ItemStack   placedItem              = event.getItemInHand();
+
         if (!NexusController.magicAPI.isWand(placedItem))
             return;
 
@@ -66,8 +69,8 @@ public class BlockPlaceListener implements Listener {
         else if (beaconIsInsideClaim)
         {
             faction.setHome(placedBlockLocation);
+            NexusOperations.addMagicBlockToMap(placedBlockLocation);
             player.sendMessage(yourHomeWasSetMessage);
-
         }
         else
         {

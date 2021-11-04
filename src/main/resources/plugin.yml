@@ -6,6 +6,7 @@ prefix: Faction Nexus
 depend:
   - "Factions"
   - "Magic"
+  - "ProtocolLib"
 authors: [ millemila ]
 description: Faction nexus to protect factions from other players
 website: brawlmc.com
