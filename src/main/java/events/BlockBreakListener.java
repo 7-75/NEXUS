@@ -50,14 +50,12 @@ public class BlockBreakListener implements Listener {
         if (!faction.getHome().equals(brokenBlockLocation))
             return;
 
-        Factions.getInstance().removeFaction(factionId);
         NexusOperations.removeMagicBlockFromMap(faction.getHome());
-
+        Factions.getInstance().removeFaction(factionId);
         Bukkit.getOnlinePlayers()
                 .forEach(player -> {
                     player.sendMessage( factionTag +" "+ factionHasBeenDefeatedMessage);
                 });
-
         event.setDropItems(false);
 
     }

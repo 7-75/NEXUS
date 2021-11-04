@@ -1,4 +1,4 @@
-nameOfTheBeaconWand: "Nexus"
+nexusWandTemplateKey: "Nexus"
 nexusMagicBlockTemplateKey: "Nexus"
 
 parameterToBeProportionalToPower: "Radius"

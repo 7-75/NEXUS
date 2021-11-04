@@ -20,9 +20,9 @@ import java.util.Objects;
 
 public class BlockPlaceListener implements Listener {
 
-    Wand                        beaconWandTemplate;
-    Material                    beaconWandMaterial;
-    String                      beaconWandTemplateName;
+    Wand                        nexusWandTemplate;
+    Material                    nexusWandMaterial;
+    String                      nexusWandTemplateKey;
     String                      youCannotPlaceWhileNotInAFactionError;
     String                      youCannotPlaceInsideUnclaimedError;
     String                      yourHomeWasSetMessage;
@@ -32,9 +32,9 @@ public class BlockPlaceListener implements Listener {
             youCannotPlaceInsideUnclaimedError          = NexusController.plugin.getConfig().getString("youCannotPlaceInsideUnclaimedError");
             youCannotPlaceWhileNotInAFactionError       = NexusController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
             yourHomeWasSetMessage                       = NexusController.plugin.getConfig().getString("yourHomeWasSetMessage");
-            beaconWandTemplateName                      = NexusController.plugin.getConfig().getString("NameOfTheBeaconWand");
-            beaconWandTemplate                          = NexusController.magicAPI.createWand(beaconWandTemplateName);
-            beaconWandMaterial                          = Objects.requireNonNull(beaconWandTemplate.getItem()).getType();
+            nexusWandTemplateKey                        = NexusController.plugin.getConfig().getString("nexusWandTemplateKey");
+            nexusWandTemplate                          = NexusController.magicAPI.createWand(nexusWandTemplateKey);
+            nexusWandMaterial                          = Objects.requireNonNull(nexusWandTemplate.getItem()).getType();
     }
 
     @EventHandler
@@ -42,7 +42,7 @@ public class BlockPlaceListener implements Listener {
         Block       placedBlock         = event.getBlockPlaced();
         Material    placedMaterial      = placedBlock.getBlockData().getMaterial();
 
-        if (placedMaterial != beaconWandMaterial)
+        if (placedMaterial != nexusWandMaterial)
             return;
 
         ItemStack   placedItem              = event.getItemInHand();

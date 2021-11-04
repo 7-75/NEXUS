@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class NexusOperations {
     ItemStack       nexusItemStack;
-    String          nameOfTheNexusWand;
+    String          nexusWandTemplateKey;
     static          String              parameterToBeProportionalToPower;
     static          String              spellToCastFromTheNexus;
     static          String              nexusMagicBlockTemplateKey;
@@ -25,13 +25,15 @@ public class NexusOperations {
 
     public NexusOperations()
     {
-        inventoryFullError                  = NexusController.plugin.getConfig().getString("inventoryFullError");
-        nameOfTheNexusWand                  = NexusController.plugin.getConfig().getString("nameOfTheBeaconWand");
+        nexusWandTemplateKey                = NexusController.plugin.getConfig().getString("nexusWandTemplateKey");
         nexusMagicBlockTemplateKey          = NexusController.plugin.getConfig().getString("nexusMagicBlockTemplateKey");
+
+        inventoryFullError                  = NexusController.plugin.getConfig().getString("inventoryFullError");
+
         parameterToBeProportionalToPower    = NexusController.plugin.getConfig().getString("parameterToBeProportionalToPower");
         spellToCastFromTheNexus             = NexusController.plugin.getConfig().getString("spellToCastFromTheNexus");
 
-        nexus                               = NexusController.magicAPI.createWand(nameOfTheNexusWand);
+        nexus                               = NexusController.magicAPI.createWand(nexusWandTemplateKey);
         nexusItemStack                      = nexus.getItem();
     }
 
