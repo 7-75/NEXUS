@@ -60,6 +60,7 @@ public class FactionUnclaimListener implements Listener {
         }
 
         NexusOperations.removeFromMap(faction);
+        NexusOperations.removeMagicBlockFromMap(location);
         NexusController.board.unclaimAll(faction.getId());
     }
 }

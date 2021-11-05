@@ -15,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import util.NexusOperations;
+import util.SchedulerOperations;
 
 import java.util.Objects;
 
@@ -33,8 +34,8 @@ public class BlockPlaceListener implements Listener {
             youCannotPlaceWhileNotInAFactionError       = NexusController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
             yourHomeWasSetMessage                       = NexusController.plugin.getConfig().getString("yourHomeWasSetMessage");
             nexusWandTemplateKey                        = NexusController.plugin.getConfig().getString("nexusWandTemplateKey");
-            nexusWandTemplate                          = NexusController.magicAPI.createWand(nexusWandTemplateKey);
-            nexusWandMaterial                          = Objects.requireNonNull(nexusWandTemplate.getItem()).getType();
+            nexusWandTemplate                           = NexusController.magicAPI.createWand(nexusWandTemplateKey);
+            nexusWandMaterial                           = Objects.requireNonNull(nexusWandTemplate.getItem()).getType();
     }
 
     @EventHandler
@@ -68,8 +69,10 @@ public class BlockPlaceListener implements Listener {
         }
         else if (beaconIsInsideClaim)
         {
+
             faction.setHome(placedBlockLocation);
             NexusOperations.addMagicBlockToMap(placedBlockLocation);
+            SchedulerOperations.addScheduler(faction);
             player.sendMessage(yourHomeWasSetMessage);
         }
         else

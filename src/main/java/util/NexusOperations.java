@@ -10,6 +10,7 @@ import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import tasks.FactionRefreshBarrierTask;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -77,22 +78,16 @@ public class NexusOperations {
     public static void addMagicBlockToMap(Location location)
     {
 
-        Faction faction     = NexusController.factions.getAllFactions()
-                .stream()
-                .filter(Faction::hasHome)
-                .filter(f -> f.getHome().equals(location))
-                .findFirst()
-                .orElse(null);
+        Faction faction = FactionsOperations.getFactionByLocation(location);
 
         if (faction == null)
             return;
 
         double     power       = faction.getPower();
 
+
         ConfigurationSection config = new MemoryConfiguration();
         config.set("cast.spells", spellToCastFromTheNexus + " " + parameterToBeProportionalToPower + " " + power);
-
-        System.out.println(config);
 
         NexusController.magicAPI.getController().addMagicBlock
                 (location, nexusMagicBlockTemplateKey, null, null, config);
@@ -100,7 +95,32 @@ public class NexusOperations {
 
     public static  void removeMagicBlockFromMap(Location location)
     {
+
+        if (!magicBlockExistsAtLocation(location))
+            return;
+
         NexusController.magicAPI.getController().removeMagicBlock(location);
+
+        Faction faction = FactionsOperations.getFactionByLocation(location);
+
+        FactionRefreshBarrierTask task = SchedulerOperations.getTaskByFactionId(faction.getId());
+
+        assert task != null;
+        NexusController.bukkitScheduler.cancelTask(task.taskId);
+
+
+    }
+
+    public static boolean magicBlockExistsAtLocation (Location location)
+    {
+
+        return NexusController.magicAPI.getController()
+        .getMagicBlocks()
+        .stream()
+        .anyMatch(magicBlock -> magicBlock
+                .getLocation()
+                .equals(location));
+
     }
 
 }

@@ -10,6 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import util.FactionsOperations;
 import util.NexusOperations;
 
 public class BlockBreakListener implements Listener {
@@ -27,19 +28,14 @@ public class BlockBreakListener implements Listener {
         Material    brokenMaterial          = event.getBlock().getType();
         Location    brokenBlockLocation     = brokenBlock.getLocation();
 
-        if (!brokenMaterial.equals(Material.BEACON))
+        String      nexusBlockPhysicalKey   = NexusController.plugin.getConfig().getString("nexusPhysicalBlockTemplate");
+        assert nexusBlockPhysicalKey != null;
+        Material    nexusBlockMaterial      = Material.getMaterial(nexusBlockPhysicalKey);
+
+        if (!brokenMaterial.equals(nexusBlockMaterial))
             return;
 
-        Faction faction =
-
-                NexusController.factions.getAllFactions()
-                                .stream()
-                                .filter(Faction::hasHome)
-                                .filter(f -> f
-                                        .getHome()
-                                        .equals(brokenBlockLocation))
-                                .findFirst()
-                        .orElse(null);
+        Faction faction = FactionsOperations.getFactionByLocation(brokenBlockLocation);
 
         if (faction == null)
             return;

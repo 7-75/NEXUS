@@ -1,8 +1,11 @@
 nexusWandTemplateKey: "Nexus"
 nexusMagicBlockTemplateKey: "Nexus"
+nexusPhysicalBlockTemplate: "BEACON"
 
 parameterToBeProportionalToPower: "Radius"
 spellToCastFromTheNexus: "nexusShellSpell"
+
+BarrierRefreshRate: 1000 #Long
 
 youCannotPlaceWhileNotInAFactionError: "You cannot place a beacon block while not being in a faction."
 youCannotPlaceInsideUnclaimedError: "You cannot place inside unclaimed territory."

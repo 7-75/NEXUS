@@ -4,6 +4,7 @@ import brawl.factionsnexus.NexusController;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FactionDisbandEvent;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
@@ -32,12 +33,11 @@ public class FactionDisbandListener implements Listener {
 
         Inventory   inventory               = event.getFPlayer().getPlayer().getInventory();
         Faction     faction                 = event.getFaction();
-        String      factionId               = faction.getId();
+        Location    fHome                   = faction.getHome();
 
-
+        NexusOperations.removeMagicBlockFromMap(fHome);
         NexusOperations.removeFromPlayer(inventory);
         NexusOperations.removeFromMap(faction);
-
 
     }
 }
