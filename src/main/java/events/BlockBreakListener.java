@@ -16,10 +16,14 @@ import util.NexusOperations;
 public class BlockBreakListener implements Listener {
 
     String factionHasBeenDefeatedMessage;
+    String      nexusBlockPhysicalKey;
 
     public BlockBreakListener()
     {
         factionHasBeenDefeatedMessage = NexusController.plugin.getConfig().getString("factionHasBeenDefeatedMessage");
+        nexusBlockPhysicalKey   = NexusController.plugin.getConfig().getString("nexusPhysicalBlockTemplate");
+
+
     }
 
     @EventHandler
@@ -28,7 +32,6 @@ public class BlockBreakListener implements Listener {
         Material    brokenMaterial          = event.getBlock().getType();
         Location    brokenBlockLocation     = brokenBlock.getLocation();
 
-        String      nexusBlockPhysicalKey   = NexusController.plugin.getConfig().getString("nexusPhysicalBlockTemplate");
         assert nexusBlockPhysicalKey != null;
         Material    nexusBlockMaterial      = Material.getMaterial(nexusBlockPhysicalKey);
 
