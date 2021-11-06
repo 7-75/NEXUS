@@ -1,44 +1,28 @@
 package events;
 
-import brawl.factionsnexus.FactionsNexus;
-import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.event.FactionCreateEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-import util.RemoveNexusFromInventory;
-
-import java.util.Objects;
+import util.NexusOperations;
 
 public class FactionCreateListener implements Listener {
 
-    String                      nameOfTheBeaconWand;
-    Wand                        nexus;
-    ItemStack                   nexusItemStack;
-    RemoveNexusFromInventory    removeNexusFromInventory;
-
-    public FactionCreateListener(JavaPlugin plugin, MagicAPI magicAPI)
-    {
-
-        nameOfTheBeaconWand             = plugin.getConfig().getString("NameOfTheBeaconWand");
-        nexus                           = magicAPI.createWand(nameOfTheBeaconWand);
-        nexusItemStack                  = nexus.getItem();
-        removeNexusFromInventory        = new RemoveNexusFromInventory(magicAPI);
-    }
-
     @EventHandler
-    public void factionCreate(FactionCreateEvent event)
-    {
+    public void factionCreate(FactionCreateEvent event) {
         Player      player              = event.getFPlayer().getPlayer();
         Inventory   inventory           = player.getInventory();
 
-        removeNexusFromInventory.remove(inventory);
-        inventory.addItem(Objects.requireNonNull(nexus.getItem()));
+        NexusOperations.removeFromPlayer(inventory);
 
+        try
+        {
+            NexusOperations.addToInventory(player);
+        } catch (Exception e)
+        {
+            player.sendMessage(e.getMessage());
+        }
 
     }
 
