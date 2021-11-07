@@ -3,7 +3,7 @@ package brawl.factionsmodule;
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.Factions;
-import main.java.tasks.FactionRefreshBarrierTask;
+import brawl.factionsmodule.tasks.FactionRefreshBarrierTask;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import brawl.factionsmodule.util.SchedulerOperations;

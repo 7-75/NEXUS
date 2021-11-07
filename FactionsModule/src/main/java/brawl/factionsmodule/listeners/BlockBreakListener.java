@@ -50,6 +50,7 @@ public class BlockBreakListener implements Listener {
 
         FactionAddonOperations.removeMagicBlockFromMap(faction.getHome());
         Factions.getInstance().removeFaction(factionId);
+
         Bukkit.getOnlinePlayers()
                 .forEach(player -> {
                     player.sendMessage( factionTag +" "+ factionHasBeenDefeatedMessage);

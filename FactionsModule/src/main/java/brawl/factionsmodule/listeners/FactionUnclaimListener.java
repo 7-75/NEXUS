@@ -1,6 +1,7 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsNexusController;
+import brawl.factionsmodule.util.SchedulerOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimEvent;
@@ -24,8 +25,7 @@ public class FactionUnclaimListener implements Listener {
     }
 
     @EventHandler
-    public void factionUnclaim (LandUnclaimEvent event)
-    {
+    public void factionUnclaim (LandUnclaimEvent event) throws Exception {
         FPlayer     fPlayer                     = event.getfPlayer();
         Player      player                      = fPlayer.getPlayer();
         Faction     faction                     = event.getFaction();
@@ -63,5 +63,9 @@ public class FactionUnclaimListener implements Listener {
         FactionAddonOperations.removeFromMap(faction);
         FactionAddonOperations.removeMagicBlockFromMap(location);
         FactionsNexusController.board.unclaimAll(faction.getId());
+        NexusOperations.addToInventory(player);
+
+        int taskId = SchedulerOperations.getTaskByFactionId(faction.getId()).taskId;
+        FactionsNexusController.bukkitScheduler.cancelTask(taskId);
     }
 }

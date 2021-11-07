@@ -1,4 +1,4 @@
-package main.java.tasks;
+package brawl.factionsmodule.tasks;
 
 import brawl.factionsmodule.FactionsNexusController;
 import org.bukkit.Location;
@@ -20,11 +20,7 @@ public class FactionRefreshBarrierTask implements Runnable {
 
         Location    location    = FactionsNexusController.factionsAPI.getFactionById(factionId).getHome();
 
-        FactionAddonOperations.removeMagicBlockFromMap(location);
-
-        //TODO give knockback to all players within the area backwards
-
-        FactionAddonOperations.addMagicBlockToMap(location);
+        FactionAddonOperations.refresh(location);
 
 
 

@@ -3,7 +3,7 @@ package brawl.factionsmodule.util;
 import brawl.factionsmodule.FactionsNexusController;
 import brawl.nexuscore.NexusController;
 import com.massivecraft.factions.Faction;
-import main.java.tasks.FactionRefreshBarrierTask;
+import brawl.factionsmodule.tasks.FactionRefreshBarrierTask;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -60,6 +60,12 @@ public class FactionAddonOperations {
         FactionsNexusController.bukkitScheduler.cancelTask(task.taskId);
 
 
+    }
+
+    public static void refresh(Location location)
+    {
+        addMagicBlockToMap(location);
+        removeMagicBlockFromMap(location);
     }
 
     public static boolean magicBlockExistsAtLocation (Location location)

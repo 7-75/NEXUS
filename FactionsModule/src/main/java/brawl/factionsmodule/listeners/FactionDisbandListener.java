@@ -1,5 +1,7 @@
 package brawl.factionsmodule.listeners;
 
+import brawl.factionsmodule.FactionsNexusController;
+import brawl.factionsmodule.util.SchedulerOperations;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FactionDisbandEvent;
 import org.bukkit.Location;
@@ -23,6 +25,7 @@ public class FactionDisbandListener implements Listener {
         FactionAddonOperations.removeMagicBlockFromMap(fHome);
         NexusOperations.removeFromPlayer(inventory);
         FactionAddonOperations.removeFromMap(faction);
-
+        int taskId = SchedulerOperations.getTaskByFactionId(faction.getId()).taskId;
+        FactionsNexusController.bukkitScheduler.cancelTask(taskId);
     }
 }
