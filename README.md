@@ -1,2 +1,2 @@
-# BRAWLMC-FACTIONSNEXUS
+# BRAWLMC-NEXUS
 Faction nexus to protect factions
