@@ -1,6 +1,6 @@
-package listeners;
+package brawl.factionsmodule.listeners;
 
-import brawl.factionsnexus.FactionsNexusController;
+import brawl.factionsmodule.FactionsNexusController;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;

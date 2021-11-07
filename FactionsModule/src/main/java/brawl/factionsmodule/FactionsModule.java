@@ -1,14 +1,14 @@
-package brawl.factionsnexus;
+package brawl.factionsmodule;
 
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.Factions;
-import listeners.*;
+import brawl.factionsmodule.listeners.*;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import util.FactionOperations;
+import brawl.factionsmodule.util.FactionOperations;
 
 
-public final class FactionsNexus extends JavaPlugin {
+public final class FactionsModule extends JavaPlugin {
 
     FactionsNexusController nexusController;
     FactionOperations nexusOperations;

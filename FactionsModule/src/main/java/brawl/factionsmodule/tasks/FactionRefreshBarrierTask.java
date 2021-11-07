@@ -1,8 +1,8 @@
 package main.java.tasks;
 
-import brawl.factionsnexus.FactionsNexusController;
+import brawl.factionsmodule.FactionsNexusController;
 import org.bukkit.Location;
-import util.FactionOperations;
+import brawl.factionsmodule.util.FactionOperations;
 
 public class FactionRefreshBarrierTask implements Runnable {
 

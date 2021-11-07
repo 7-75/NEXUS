@@ -1,6 +1,6 @@
-package util;
+package brawl.factionsmodule.util;
 
-import brawl.factionsnexus.FactionsNexusController;
+import brawl.factionsmodule.FactionsNexusController;
 import com.massivecraft.factions.Faction;
 import org.bukkit.Location;
 

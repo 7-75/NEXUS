@@ -1,4 +1,4 @@
-package util;
+package brawl.nexuscore.util;
 
 import brawl.nexuscore.NexusController;
 import com.elmakers.mine.bukkit.api.wand.Wand;

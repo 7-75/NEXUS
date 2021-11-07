@@ -1,4 +1,4 @@
-package brawl.factionsnexus;
+package brawl.factionsmodule;
 
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.Faction;
@@ -6,7 +6,7 @@ import com.massivecraft.factions.Factions;
 import main.java.tasks.FactionRefreshBarrierTask;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
-import util.SchedulerOperations;
+import brawl.factionsmodule.util.SchedulerOperations;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package listeners;
+package brawl.factionsmodule.listeners;
 
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
@@ -7,8 +7,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import util.FactionOperations;
-import util.NexusOperations;
+import brawl.factionsmodule.util.FactionOperations;
+import brawl.nexuscore.util.NexusOperations;
 
 public class FactionUnclaimAllListener implements Listener {
 

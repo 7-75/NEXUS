@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/NexusCore/pom.xml" />
         <option value="$PROJECT_DIR$/NexusFactionsAddon/pom.xml" />
+        <option value="$PROJECT_DIR$/FactionsModule/pom.xml" />
       </list>
     </option>
   </component>

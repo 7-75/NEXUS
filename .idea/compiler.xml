@@ -7,13 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Factions Module" />
-        <module name="NexusFactionsAddon" />
         <module name="NexusCore" />
+        <module name="FactionsModule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="BRAWLMC-NEXUS" target="10" />
       <module name="Factions Module" target="1.8" />
+      <module name="FactionsModule" target="1.8" />
       <module name="NexusAPI" target="17" />
       <module name="NexusCore" target="1.8" />
       <module name="NexusCore2" target="1.8" />

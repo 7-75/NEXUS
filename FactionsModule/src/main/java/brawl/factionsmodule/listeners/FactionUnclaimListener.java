@@ -1,6 +1,6 @@
-package listeners;
+package brawl.factionsmodule.listeners;
 
-import brawl.factionsnexus.FactionsNexusController;
+import brawl.factionsmodule.FactionsNexusController;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimEvent;
@@ -8,8 +8,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import util.FactionOperations;
-import util.NexusOperations;
+import brawl.factionsmodule.util.FactionOperations;
+import brawl.nexuscore.util.NexusOperations;
 
 import java.util.HashMap;
 

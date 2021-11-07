@@ -1,6 +1,6 @@
-package listeners;
+package brawl.factionsmodule.listeners;
 
-import brawl.factionsnexus.FactionsNexusController;
+import brawl.factionsmodule.FactionsNexusController;
 import brawl.nexuscore.NexusController;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.FPlayer;
@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import util.NexusOperations;
+import brawl.nexuscore.util.NexusOperations;
 
 public class FactionLeaveListener implements Listener {
 

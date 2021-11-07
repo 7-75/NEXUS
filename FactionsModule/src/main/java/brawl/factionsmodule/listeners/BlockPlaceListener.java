@@ -1,8 +1,8 @@
-package listeners;
+package brawl.factionsmodule.listeners;
 
-import brawl.factionsnexus.FactionsNexusController;
+import brawl.factionsmodule.FactionsNexusController;
 import brawl.nexuscore.NexusController;
-import util.SchedulerOperations;
+import brawl.factionsmodule.util.SchedulerOperations;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FPlayer;
@@ -16,7 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import util.FactionOperations;
+import brawl.factionsmodule.util.FactionOperations;
 
 import java.util.Objects;
 
@@ -24,7 +24,6 @@ public class BlockPlaceListener implements Listener {
 
     Wand                        nexusWandTemplate;
     Material                    nexusWandMaterial;
-    String                      nexusWandTemplateKey;
     String                      youCannotPlaceWhileNotInAFactionError;
     String                      youCannotPlaceInsideUnclaimedError;
     String                      yourHomeWasSetMessage;
@@ -34,8 +33,7 @@ public class BlockPlaceListener implements Listener {
             youCannotPlaceInsideUnclaimedError          = FactionsNexusController.plugin.getConfig().getString("youCannotPlaceInsideUnclaimedError");
             youCannotPlaceWhileNotInAFactionError       = FactionsNexusController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
             yourHomeWasSetMessage                       = FactionsNexusController.plugin.getConfig().getString("yourHomeWasSetMessage");
-            nexusWandTemplateKey                        = FactionsNexusController.plugin.getConfig().getString("nexusWandTemplateKey");
-            nexusWandTemplate                           = NexusController.magicAPI.createWand(nexusWandTemplateKey);
+            nexusWandTemplate                           = NexusController.magicAPI.createWand(NexusController.nexusWandTemplateKey);
             nexusWandMaterial                           = Objects.requireNonNull(nexusWandTemplate.getItem()).getType();
     }
 

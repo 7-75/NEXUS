@@ -1,11 +1,11 @@
-package listeners;
+package brawl.factionsmodule.listeners;
 
 import com.massivecraft.factions.event.FactionCreateEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import util.NexusOperations;
+import brawl.nexuscore.util.NexusOperations;
 
 public class FactionCreateListener implements Listener {
 

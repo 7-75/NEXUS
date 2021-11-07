@@ -1,6 +1,7 @@
-package listeners;
+package brawl.factionsmodule.listeners;
 
-import brawl.factionsnexus.FactionsNexusController;
+import brawl.factionsmodule.FactionsNexusController;
+import brawl.nexuscore.NexusController;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.Factions;
 import org.bukkit.Bukkit;
@@ -10,18 +11,16 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import util.FactionsOperations;
-import util.FactionOperations;
+import brawl.factionsmodule.util.FactionsOperations;
+import brawl.factionsmodule.util.FactionOperations;
 
 public class BlockBreakListener implements Listener {
 
     String      factionHasBeenDefeatedMessage;
-    String      nexusBlockPhysicalKey;
 
     public BlockBreakListener()
     {
         factionHasBeenDefeatedMessage = FactionsNexusController.plugin.getConfig().getString("factionHasBeenDefeatedMessage");
-        nexusBlockPhysicalKey   = FactionsNexusController.plugin.getConfig().getString("nexusPhysicalBlockTemplate");
 
 
     }
@@ -32,8 +31,8 @@ public class BlockBreakListener implements Listener {
         Material    brokenMaterial          = event.getBlock().getType();
         Location    brokenBlockLocation     = brokenBlock.getLocation();
 
-        assert nexusBlockPhysicalKey != null;
-        Material    nexusBlockMaterial      = Material.getMaterial(nexusBlockPhysicalKey);
+        assert NexusController.nexusPhysicalBlockTemplate != null;
+        Material    nexusBlockMaterial      = Material.getMaterial(NexusController.nexusPhysicalBlockTemplate);
 
         if (!brokenMaterial.equals(nexusBlockMaterial))
             return;

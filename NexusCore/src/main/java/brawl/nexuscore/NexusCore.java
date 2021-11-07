@@ -13,7 +13,12 @@ public final class NexusCore extends JavaPlugin {
     public void onEnable() {
 
         nexusController = new NexusController(this, getMagicAPI());
+        writeDefaultConfig();
+    }
 
+    private void writeDefaultConfig()
+    {
+        this.saveDefaultConfig();
     }
 
     MagicAPI getMagicAPI() {
