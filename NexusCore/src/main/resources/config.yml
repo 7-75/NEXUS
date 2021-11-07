@@ -1,0 +1,8 @@
+nexusWandTemplateKey: "Nexus"
+nexusMagicBlockTemplateKey: "Nexus"
+nexusPhysicalBlockTemplate: "BEACON"
+
+parameterToBeProportionalToPower: "Radius"
+spellToCastFromTheNexus: "nexusShellSpell"
+
+barrierRefreshRate: 1000 #Long
