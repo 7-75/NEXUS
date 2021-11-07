@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import brawl.factionsmodule.util.FactionsOperations;
-import brawl.factionsmodule.util.FactionOperations;
+import brawl.factionsmodule.util.FactionAddonOperations;
 
 public class BlockBreakListener implements Listener {
 
@@ -48,7 +48,7 @@ public class BlockBreakListener implements Listener {
         if (!faction.getHome().equals(brokenBlockLocation))
             return;
 
-        FactionOperations.removeMagicBlockFromMap(faction.getHome());
+        FactionAddonOperations.removeMagicBlockFromMap(faction.getHome());
         Factions.getInstance().removeFaction(factionId);
         Bukkit.getOnlinePlayers()
                 .forEach(player -> {

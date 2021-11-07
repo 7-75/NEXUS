@@ -5,13 +5,13 @@ import com.massivecraft.factions.Factions;
 import brawl.factionsmodule.listeners.*;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import brawl.factionsmodule.util.FactionOperations;
+import brawl.factionsmodule.util.FactionAddonOperations;
 
 
 public final class FactionsModule extends JavaPlugin {
 
     FactionsNexusController nexusController;
-    FactionOperations nexusOperations;
+    FactionAddonOperations nexusOperations;
 
     @Override
     public void onEnable() {

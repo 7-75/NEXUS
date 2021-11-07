@@ -6,7 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import brawl.factionsmodule.util.FactionOperations;
+import brawl.factionsmodule.util.FactionAddonOperations;
 import brawl.nexuscore.util.NexusOperations;
 
 
@@ -20,9 +20,9 @@ public class FactionDisbandListener implements Listener {
         Faction     faction                 = event.getFaction();
         Location    fHome                   = faction.getHome();
 
-        FactionOperations.removeMagicBlockFromMap(fHome);
+        FactionAddonOperations.removeMagicBlockFromMap(fHome);
         NexusOperations.removeFromPlayer(inventory);
-        FactionOperations.removeFromMap(faction);
+        FactionAddonOperations.removeFromMap(faction);
 
     }
 }

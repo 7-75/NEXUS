@@ -16,7 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import brawl.factionsmodule.util.FactionOperations;
+import brawl.factionsmodule.util.FactionAddonOperations;
 
 import java.util.Objects;
 
@@ -70,7 +70,7 @@ public class BlockPlaceListener implements Listener {
         {
 
             faction.setHome(placedBlockLocation);
-            FactionOperations.addMagicBlockToMap(placedBlockLocation);
+            FactionAddonOperations.addMagicBlockToMap(placedBlockLocation);
             SchedulerOperations.addScheduler(faction);
             player.sendMessage(yourHomeWasSetMessage);
         }

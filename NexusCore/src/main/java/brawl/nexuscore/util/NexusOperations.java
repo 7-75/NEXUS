@@ -13,18 +13,14 @@ public class NexusOperations {
 
     private static  String inventoryFullError;
     private static  String nexusWandTemplateKey;
-    private static  String nexusMagicBlockTemplateKey;
-    private static  Wand nexus;
+    public static   Wand nexus;
 
 
     public NexusOperations()
 {
     inventoryFullError                  = NexusController.plugin.getConfig().getString("inventoryFullError");
     nexusWandTemplateKey                = NexusController.plugin.getConfig().getString("nexusWandTemplateKey");
-    nexusMagicBlockTemplateKey          = NexusController.plugin.getConfig().getString("nexusMagicBlockTemplateKey");
-
     nexus                               = NexusController.magicAPI.createWand(nexusWandTemplateKey);
-
 }
 
 

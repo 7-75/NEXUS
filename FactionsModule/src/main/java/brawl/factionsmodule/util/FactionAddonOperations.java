@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 
-public class FactionOperations {
+public class FactionAddonOperations {
 
     public static void removeFromMap(Faction faction)
     {

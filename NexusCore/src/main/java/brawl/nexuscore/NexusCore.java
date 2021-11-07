@@ -1,5 +1,6 @@
 package brawl.nexuscore;
 
+import brawl.nexuscore.util.NexusOperations;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -8,11 +9,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class NexusCore extends JavaPlugin {
 
     private NexusController nexusController;
+    private NexusOperations nexusOperations;
 
     @Override
     public void onEnable() {
-
         nexusController = new NexusController(this, getMagicAPI());
+        nexusOperations = new NexusOperations();
         writeDefaultConfig();
     }
 
