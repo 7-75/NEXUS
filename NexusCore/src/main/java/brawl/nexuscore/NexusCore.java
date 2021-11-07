@@ -18,17 +18,14 @@ public final class NexusCore extends JavaPlugin {
 
     MagicAPI getMagicAPI() {
         Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
-        if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
+        if (!(magicPlugin instanceof MagicAPI)) {
             return null;
         }
         return (MagicAPI)magicPlugin;
     }
 
-    public NexusController getNexusController() throws Exception {
-        if (nexusController != null)
-            return nexusController;
-        else
-            throw new Exception("NexusCore is not loaded yet!");
+    public NexusController getNexusController() {
+        return  nexusController;
     }
 
     @Override

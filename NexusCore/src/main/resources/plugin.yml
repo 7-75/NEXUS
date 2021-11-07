@@ -2,8 +2,8 @@ name: NexusCore
 version: '${project.version}'
 main: brawl.nexuscore.NexusCore
 api-version: 1.17
-prefix: [ NexusCore ]
-loadbefore: [ NexusFactions ]
-authors: [ millemila ]
+prefix: NexusCore
+loadbefore: [NexusFactionsAddon]
+authors: [millemila]
 description: Core plugin for the Nexus series of plugins
 website: www.brawlmc.com

@@ -5,18 +5,19 @@ import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 
 public class NexusController {
 
-    public MagicAPI magicAPI;
-    public String   nexusWandTemplateKey;
-    public String   nexusMagicBlockTemplateKey;
-    public String   nexusPhysicalBlockTemplate;
-    public String   parameterToBeProportionalToPower;
-    public String   spellToCastFromTheNexus;
-    public Long     barrierRefreshRate;
+    public static MagicAPI      magicAPI;
+    public static JavaPlugin    plugin;
+    public static String        nexusWandTemplateKey;
+    public static String        nexusMagicBlockTemplateKey;
+    public static String        nexusPhysicalBlockTemplate;
+    public static String        parameterToBeProportionalToPower;
+    public static String        spellToCastFromTheNexus;
+    public static Long          barrierRefreshRate;
 
     public NexusController(JavaPlugin plugin, MagicAPI magicAPI)
     {
-        this.magicAPI                       = magicAPI;
-
+        NexusController.plugin              = plugin;
+        NexusController.magicAPI            = magicAPI;
         nexusWandTemplateKey                = plugin.getConfig().getString("nexusWandTemplateKey");
         nexusMagicBlockTemplateKey          = plugin.getConfig().getString("nexusMagicBlockTemplateKey");
         nexusPhysicalBlockTemplate          = plugin.getConfig().getString("nexusPhysicalBlockTemplate");
@@ -24,10 +25,4 @@ public class NexusController {
         spellToCastFromTheNexus             = plugin.getConfig().getString("spellToCastFromTheNexus");
         barrierRefreshRate                  = plugin.getConfig().getLong("barrierRefreshRate");
     }
-
-    public NexusController getInstance()
-    {
-        return this;
-    }
-
 }
