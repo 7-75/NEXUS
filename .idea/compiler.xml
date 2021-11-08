@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Factions Module" />
+        <module name="NexusCore" />
+        <module name="FactionsModule" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="BRAWLMC-NEXUS" target="10" />
+      <module name="Factions Module" target="1.8" />
+      <module name="FactionsModule" target="1.8" />
+      <module name="NexusAPI" target="17" />
+      <module name="NexusCore" target="1.8" />
+      <module name="NexusCore2" target="1.8" />
+      <module name="NexusFactions" target="10" />
+      <module name="NexusFactionsAddon" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

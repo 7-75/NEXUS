@@ -1,0 +1,12 @@
+name: FactionsModule
+version: '${project.version}'
+main: brawl.factionsmodule.FactionsModule
+api-version: 1.17
+prefix: Nexus Factions Add-on
+depend:
+  - "Factions"
+  - "Magic"
+  - "NexusCore"
+authors: [millemila]
+description: Factions add-on for NexusCore
+website: brawlmc.com
