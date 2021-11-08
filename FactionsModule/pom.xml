@@ -56,10 +56,6 @@
 
     <repositories>
         <repository>
-            <id>papermc-repo</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
-        </repository>
-        <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
@@ -79,8 +75,9 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.17.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <version>1.8.8</version>
+            <systemPath>${basedir}/../.idea/libraries/paper-1.8.8-443.jar</systemPath>
+            <scope>system</scope>
         </dependency>
         <dependency>
             <groupId>brawl.nexuscore</groupId>
@@ -95,6 +92,18 @@
             <version>10.2-SNAPSHOT</version>
             <systemPath>${basedir}/../.idea/libraries/MagicAPI-10.2-SNAPSHOT.jar</systemPath>
             <scope>system</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

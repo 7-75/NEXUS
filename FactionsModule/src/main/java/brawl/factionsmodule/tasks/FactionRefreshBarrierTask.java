@@ -19,7 +19,6 @@ public class FactionRefreshBarrierTask implements Runnable {
     public void run() {
 
         Location    location    = FactionsNexusController.factionsAPI.getFactionById(factionId).getHome();
-
         FactionAddonOperations.refresh(location);
 
 

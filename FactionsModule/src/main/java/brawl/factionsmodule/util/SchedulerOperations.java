@@ -1,6 +1,7 @@
 package brawl.factionsmodule.util;
 
 import brawl.factionsmodule.FactionsNexusController;
+import brawl.nexuscore.NexusController;
 import com.massivecraft.factions.Faction;
 import brawl.factionsmodule.tasks.FactionRefreshBarrierTask;
 
@@ -16,7 +17,7 @@ public class SchedulerOperations {
                 FactionsNexusController.plugin,
                 task,
                 0,
-                FactionsNexusController.plugin.getConfig().getLong("BarrierRefreshRate")
+                NexusController.barrierRefreshRate
 
         );
         return task;

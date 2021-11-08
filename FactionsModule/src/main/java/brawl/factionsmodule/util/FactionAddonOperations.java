@@ -1,9 +1,7 @@
 package brawl.factionsmodule.util;
 
-import brawl.factionsmodule.FactionsNexusController;
 import brawl.nexuscore.NexusController;
 import com.massivecraft.factions.Faction;
-import brawl.factionsmodule.tasks.FactionRefreshBarrierTask;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -36,12 +34,13 @@ public class FactionAddonOperations {
 
         double     power       = faction.getPower();
 
-
         ConfigurationSection config = new MemoryConfiguration();
         config.set("cast.spells", NexusController.spellToCastFromTheNexus + " " + NexusController.parameterToBeProportionalToPower + " " + power);
 
         NexusController.magicAPI.getController().addMagicBlock
                 (location, NexusController.nexusMagicBlockTemplateKey, null, null, config);
+
+
     }
 
     public static  void removeMagicBlockFromMap(Location location)
@@ -52,20 +51,12 @@ public class FactionAddonOperations {
 
         NexusController.magicAPI.getController().removeMagicBlock(location);
 
-        Faction faction = FactionsOperations.getFactionByLocation(location);
-
-        FactionRefreshBarrierTask task = SchedulerOperations.getTaskByFactionId(faction.getId());
-
-        assert task != null;
-        FactionsNexusController.bukkitScheduler.cancelTask(task.taskId);
-
-
     }
 
     public static void refresh(Location location)
     {
-        addMagicBlockToMap(location);
         removeMagicBlockFromMap(location);
+        addMagicBlockToMap(location);
     }
 
     public static boolean magicBlockExistsAtLocation (Location location)

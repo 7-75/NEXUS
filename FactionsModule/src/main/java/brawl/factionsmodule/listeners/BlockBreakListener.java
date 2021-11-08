@@ -1,6 +1,9 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsNexusController;
+import brawl.factionsmodule.util.FactionAddonOperations;
+import brawl.factionsmodule.util.FactionsOperations;
+import brawl.factionsmodule.util.SchedulerOperations;
 import brawl.nexuscore.NexusController;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.Factions;
@@ -11,8 +14,6 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import brawl.factionsmodule.util.FactionsOperations;
-import brawl.factionsmodule.util.FactionAddonOperations;
 
 public class BlockBreakListener implements Listener {
 
@@ -51,10 +52,14 @@ public class BlockBreakListener implements Listener {
         FactionAddonOperations.removeMagicBlockFromMap(faction.getHome());
         Factions.getInstance().removeFaction(factionId);
 
+        int taskId = SchedulerOperations.getTaskByFactionId(faction.getId()).taskId;
+        FactionsNexusController.bukkitScheduler.cancelTask(taskId);
+
         Bukkit.getOnlinePlayers()
                 .forEach(player -> {
                     player.sendMessage( factionTag +" "+ factionHasBeenDefeatedMessage);
                 });
+
         event.setDropItems(false);
 
     }

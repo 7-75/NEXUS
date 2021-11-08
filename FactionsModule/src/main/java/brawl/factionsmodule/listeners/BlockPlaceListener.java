@@ -1,8 +1,9 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsNexusController;
-import brawl.nexuscore.NexusController;
+import brawl.factionsmodule.util.FactionAddonOperations;
 import brawl.factionsmodule.util.SchedulerOperations;
+import brawl.nexuscore.NexusController;
 import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FPlayer;
@@ -16,7 +17,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import brawl.factionsmodule.util.FactionAddonOperations;
 
 import java.util.Objects;
 
