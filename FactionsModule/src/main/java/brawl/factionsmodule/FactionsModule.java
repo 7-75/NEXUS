@@ -55,14 +55,16 @@ public final class FactionsModule extends JavaPlugin {
     {
         PluginManager pluginManager = getServer().getPluginManager();
 
-        pluginManager.registerEvents(new FactionCreateListener(), this);
-        pluginManager.registerEvents(new FactionSetHomeListener(), this);
-        pluginManager.registerEvents(new FactionLeaveListener(),this);
-        pluginManager.registerEvents(new FactionDisbandListener(), this);
-        pluginManager.registerEvents(new BlockPlaceListener(), this);
         pluginManager.registerEvents(new BlockBreakListener(),this);
-        pluginManager.registerEvents(new FactionUnclaimListener(),this);
+        pluginManager.registerEvents(new BlockPlaceListener(), this);
+        pluginManager.registerEvents(new BlockExplodeListener(),this);
+        pluginManager.registerEvents(new EntityExplodeListener(),this);
+        pluginManager.registerEvents(new FactionCreateListener(), this);
+        pluginManager.registerEvents(new FactionDisbandListener(), this);
+        pluginManager.registerEvents(new FactionLeaveListener(),this);
+        pluginManager.registerEvents(new FactionSetHomeListener(), this);
         pluginManager.registerEvents(new FactionUnclaimAllListener(),this);
+        pluginManager.registerEvents(new FactionUnclaimListener(),this);
 
     }
 
