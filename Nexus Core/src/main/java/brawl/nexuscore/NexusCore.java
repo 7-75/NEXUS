@@ -1,8 +1,11 @@
 package brawl.nexuscore;
 
 import brawl.nexuscore.listeners.*;
+import brawl.nexuscore.util.IOOperations;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
 
 public final class NexusCore extends JavaPlugin {
 
@@ -13,6 +16,11 @@ public final class NexusCore extends JavaPlugin {
         nexusController = new NexusController(this);
         writeDefaultConfig();
         registerEvents();
+        try {
+            IOOperations.readNexusesFromFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void writeDefaultConfig()
@@ -40,6 +48,10 @@ public final class NexusCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        try {
+            IOOperations.writeNexusesToFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

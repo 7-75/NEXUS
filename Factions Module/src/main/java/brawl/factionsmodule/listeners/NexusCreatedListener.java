@@ -18,9 +18,9 @@ public class NexusCreatedListener implements Listener {
     public String yourHomeWasSetMessage;
 
     public NexusCreatedListener() {
-        youCannotPlaceInsideUnclaimedError = FactionsModuleController.plugin.getConfig().getString("youCannotPlaceInsideUnclaimedError");
-        youCannotPlaceWhileNotInAFactionError = FactionsModuleController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
-        yourHomeWasSetMessage = FactionsModuleController.plugin.getConfig().getString("yourHomeWasSetMessage");
+        youCannotPlaceInsideUnclaimedError      = FactionsModuleController.plugin.getConfig().getString("youCannotPlaceInsideUnclaimedError");
+        youCannotPlaceWhileNotInAFactionError   = FactionsModuleController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
+        yourHomeWasSetMessage                   = FactionsModuleController.plugin.getConfig().getString("yourHomeWasSetMessage");
     }
 
         @EventHandler
@@ -30,6 +30,8 @@ public class NexusCreatedListener implements Listener {
         FPlayer fPlayer                 = FPlayers.getInstance().getByPlayer(player);
         Faction faction                 = fPlayer.getFaction();
         Location placedBlockLocation    = event.getBlock().getLocation();
+
+        System.out.println("test0:check");
 
         if (!fPlayer.hasFaction())
         {

@@ -28,7 +28,7 @@ public class BlockPlaceListener implements Listener {
             return;
 
         NexusCreatedEvent nexusCreated =
-                new NexusCreatedEvent(event.getBlockPlaced(), event.getBlockReplacedState(), event.getBlockAgainst(), event.getItemInHand(), event.getPlayer(), event.canBuild(), event.getHand());
+                new NexusCreatedEvent(event);
         Bukkit.getPluginManager().callEvent(nexusCreated);
 
     }

@@ -1,27 +1,20 @@
 package brawl.nexuscore.events;
 
 import brawl.nexuscore.NexusController;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class NexusCreatedEvent extends BlockPlaceEvent {
 
+    BlockPlaceEvent event;
     private boolean isCancelled;
-
-    public NexusCreatedEvent(@NotNull final Block placedBlock, @NotNull final BlockState replacedBlockState, @NotNull final Block placedAgainst, @NotNull final ItemStack itemInHand, @NotNull final Player thePlayer, final boolean canBuild, @NotNull final EquipmentSlot hand)
-    {
-        super( placedBlock, replacedBlockState, placedAgainst, itemInHand, thePlayer, canBuild, hand);
-        this.isCancelled    = false;
-        NexusController.nexusBlocks.add(super.block.getLocation());
-    }
-
     private static final HandlerList HANDLERS = new HandlerList();
+
+    public NexusCreatedEvent(BlockPlaceEvent event) {
+        super(event.getBlockPlaced(),event.getBlockReplacedState(),event.getBlockPlaced(),event.getItemInHand(),event.getPlayer(),event.canBuild(),event.getHand());
+        this.event = event;
+    }
 
     @Override
     public @NotNull HandlerList getHandlers() {
@@ -42,8 +35,8 @@ public class NexusCreatedEvent extends BlockPlaceEvent {
 
         if (isCancelled)
         {
-            super.setCancelled(true);
-            NexusController.nexusBlocks.remove(super.block.getLocation());
+            event.setCancelled(true);
+            NexusController.nexusBlocks.remove(event.getBlock().getLocation());
         }
         this.isCancelled = isCancelled;
     }
