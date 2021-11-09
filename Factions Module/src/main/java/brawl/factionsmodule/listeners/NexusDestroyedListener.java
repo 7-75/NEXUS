@@ -30,7 +30,7 @@ public class NexusDestroyedListener implements Listener {
         String factionNexusWasBrokenMessage =
                 FactionsModuleController.plugin.getConfig().getString("factionNexusWasBrokenMessage");
 
-        Bukkit.getServer().broadcast(Component.text(factionTag + " " + factionNexusWasBrokenMessage));
+        Bukkit.getServer().broadcast(Component.text(factionTag + factionNexusWasBrokenMessage));
 
     }
 }

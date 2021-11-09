@@ -1,19 +1,16 @@
 package brawl.nexuscore;
 
 import brawl.nexuscore.listeners.*;
-import brawl.nexuscore.util.NexusOperations;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class NexusCore extends JavaPlugin {
 
     private NexusController nexusController;
-    private NexusOperations nexusOperations;
 
     @Override
     public void onEnable() {
         nexusController = new NexusController(this);
-        nexusOperations = new NexusOperations();
         writeDefaultConfig();
         registerEvents();
     }
@@ -43,6 +40,6 @@ public final class NexusCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+
     }
 }
