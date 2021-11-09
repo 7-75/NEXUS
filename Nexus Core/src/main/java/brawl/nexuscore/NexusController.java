@@ -17,7 +17,7 @@ public class NexusController {
         NexusController.plugin      = plugin;
         nexusBlockMaterial          = plugin.getConfig().getString("nexusBlockMaterial");
         nexusItemLore               = plugin.getConfig().getString("nexusItemLore");
-        nexusBlocks                 = new ArrayList<Location>();
+        nexusBlocks                 = new ArrayList<>();
 
     }
 }

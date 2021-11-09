@@ -13,7 +13,6 @@ public class NexusRemovedEvent extends Event implements Cancellable {
         private boolean isCancelled;
 
         public NexusRemovedEvent(Location location){
-            System.out.println("test0:check");
             this.location = location;
             this.isCancelled = false;
             NexusController.nexusBlocks.remove(location);

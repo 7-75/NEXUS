@@ -14,22 +14,11 @@ import java.util.Objects;
 
 public class NexusOperations {
 
-    private static  String      inventoryFullError;
-    public  static  ItemStack   nexusItemStack;
-
-    public NexusOperations()
-    {
-        inventoryFullError              = NexusController.plugin.getConfig().getString("inventoryFullError");
-        nexusItemStack                  = NexusOperations.nexusBlockFactory();
-    }
-
-
-
     public static void addToInventory(Player player) throws Exception {
         Inventory inventory = player.getInventory();
 
         if (player.getInventory().firstEmpty() == -1)
-            throw new Exception(inventoryFullError);
+            throw new Exception(NexusController.plugin.getConfig().getString("inventoryFullError"));
         else
         {
             inventory.addItem(nexusBlockFactory());
@@ -46,9 +35,9 @@ public class NexusOperations {
 
     public static ItemStack nexusBlockFactory()
     {
-        ItemStack i = new ItemStack(Material.getMaterial(NexusController.nexusBlockMaterial));
+        ItemStack i = new ItemStack(Objects.requireNonNull(Material.getMaterial(NexusController.nexusBlockMaterial)));
         ItemMeta im = i.getItemMeta();
-        List<Component> lore = new ArrayList<Component>();
+        List<Component> lore = new ArrayList<>();
         lore.add(Component.text(NexusController.nexusItemLore));
         im.lore(lore);
         i.setItemMeta(im);
@@ -60,7 +49,6 @@ public class NexusOperations {
     {
         if (!itemStack.getItemMeta().hasLore())
             return false;
-        boolean hasLore = Objects.requireNonNull(itemStack.lore()).contains(Component.text(NexusController.nexusItemLore));
-        return hasLore;
+        return Objects.requireNonNull(itemStack.lore()).contains(Component.text(NexusController.nexusItemLore));
     }
 }
