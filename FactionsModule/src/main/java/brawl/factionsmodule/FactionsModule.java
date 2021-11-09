@@ -1,24 +1,22 @@
 package brawl.factionsmodule;
 
+import brawl.factionsmodule.listeners.*;
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.Factions;
-import brawl.factionsmodule.listeners.*;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import brawl.factionsmodule.util.FactionAddonOperations;
 
 
 public final class FactionsModule extends JavaPlugin {
 
-    FactionsNexusController nexusController;
-    FactionAddonOperations nexusOperations;
+    FactionsModuleController nexusController;
 
     @Override
     public void onEnable() {
 
 
 
-        nexusController = new FactionsNexusController(this, getFactionsInstance(), getBoardInstance());
+        nexusController = new FactionsModuleController(this, getFactionsInstance(), getBoardInstance());
 
         writeDefaultConfig();
         registerListeners();
@@ -54,11 +52,8 @@ public final class FactionsModule extends JavaPlugin {
     private void registerListeners()
     {
         PluginManager pluginManager = getServer().getPluginManager();
-
-        pluginManager.registerEvents(new BlockBreakListener(),this);
-        pluginManager.registerEvents(new BlockPlaceListener(), this);
-        pluginManager.registerEvents(new BlockExplodeListener(),this);
-        pluginManager.registerEvents(new EntityExplodeListener(),this);
+        pluginManager.registerEvents(new NexusCreatedListener(),this);
+        pluginManager.registerEvents(new NexusDestroyedListener(), this);
         pluginManager.registerEvents(new FactionCreateListener(), this);
         pluginManager.registerEvents(new FactionDisbandListener(), this);
         pluginManager.registerEvents(new FactionLeaveListener(),this);

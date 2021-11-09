@@ -1,0 +1,9 @@
+name: MagicModule
+version: '${project.version}'
+main: brawl.magicmodule.MagicModule
+api-version: 1.17
+prefix: Magic Module
+depend: [ Magic, NexusCore ]
+authors: [ millemila ]
+description: Magic module addition for NexusCore - Protects your nexus with a magic barrier
+website: brawlmc.com

@@ -1,9 +1,8 @@
 package brawl.nexuscore;
 
+import brawl.nexuscore.listeners.*;
 import brawl.nexuscore.util.NexusOperations;
-import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class NexusCore extends JavaPlugin {
@@ -13,9 +12,10 @@ public final class NexusCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        nexusController = new NexusController(this, getMagicAPI());
+        nexusController = new NexusController(this);
         nexusOperations = new NexusOperations();
         writeDefaultConfig();
+        registerEvents();
     }
 
     private void writeDefaultConfig()
@@ -23,12 +23,18 @@ public final class NexusCore extends JavaPlugin {
         this.saveDefaultConfig();
     }
 
-    MagicAPI getMagicAPI() {
-        Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
-        if (!(magicPlugin instanceof MagicAPI)) {
-            return null;
-        }
-        return (MagicAPI)magicPlugin;
+    private void registerEvents()
+    {
+        PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new BlockBreakListener(),this);
+        pluginManager.registerEvents(new BlockExplodeListener(),this);
+        pluginManager.registerEvents(new BlockPlaceListener(),this);
+        pluginManager.registerEvents(new EntityExplodeListener(),this);
+        pluginManager.registerEvents(new ItemDropListener(), this);
+        pluginManager.registerEvents(new ItemShiftClickListener(), this);
+        pluginManager.registerEvents(new ItemClickListener(),this);
+        pluginManager.registerEvents(new ItemDragListener(),this);
+        pluginManager.registerEvents(new PlayerDeathListener(), this);
     }
 
     public NexusController getNexusController() {

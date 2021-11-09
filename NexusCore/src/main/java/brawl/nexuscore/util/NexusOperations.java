@@ -1,27 +1,27 @@
 package brawl.nexuscore.util;
 
 import brawl.nexuscore.NexusController;
-import com.elmakers.mine.bukkit.api.wand.Wand;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class NexusOperations {
 
-    private static  String inventoryFullError;
-    private static  String nexusWandTemplateKey;
-    public static   Wand nexus;
-
+    private static  String      inventoryFullError;
+    public  static  ItemStack   nexusItemStack;
 
     public NexusOperations()
-{
-    inventoryFullError                  = NexusController.plugin.getConfig().getString("inventoryFullError");
-    nexusWandTemplateKey                = NexusController.plugin.getConfig().getString("nexusWandTemplateKey");
-    nexus                               = NexusController.magicAPI.createWand(nexusWandTemplateKey);
-}
+    {
+        inventoryFullError              = NexusController.plugin.getConfig().getString("inventoryFullError");
+        nexusItemStack                  = NexusOperations.nexusBlockFactory();
+    }
 
 
 
@@ -32,21 +32,35 @@ public class NexusOperations {
             throw new Exception(inventoryFullError);
         else
         {
-            inventory.addItem(Objects.requireNonNull(nexus.getItem()));
+            inventory.addItem(nexusBlockFactory());
         }
 
     }
 
     public static void removeFromPlayer(Inventory inventory) {
 
-        Arrays
-                .stream(inventory.getContents())
-                .filter(Objects::nonNull)
-                .filter(NexusController.magicAPI::isWand)
-                .filter(itemStack -> itemStack.getType().equals(Material.BEACON))
-                .forEach(item -> item.setAmount(-1));
+        inventory.remove(nexusBlockFactory());
+
 
     }
 
+    public static ItemStack nexusBlockFactory()
+    {
+        ItemStack i = new ItemStack(Material.getMaterial(NexusController.nexusBlockMaterial));
+        ItemMeta im = i.getItemMeta();
+        List<Component> lore = new ArrayList<Component>();
+        lore.add(Component.text(NexusController.nexusItemLore));
+        im.lore(lore);
+        i.setItemMeta(im);
+        return i;
+    }
 
+
+    public static boolean isNexus(ItemStack itemStack)
+    {
+        if (!itemStack.getItemMeta().hasLore())
+            return false;
+        boolean hasLore = Objects.requireNonNull(itemStack.lore()).contains(Component.text(NexusController.nexusItemLore));
+        return hasLore;
+    }
 }

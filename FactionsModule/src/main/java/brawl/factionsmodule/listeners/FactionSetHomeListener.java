@@ -1,6 +1,6 @@
 package brawl.factionsmodule.listeners;
 
-import brawl.factionsmodule.FactionsNexusController;
+import brawl.factionsmodule.FactionsModuleController;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -13,7 +13,7 @@ public class FactionSetHomeListener implements Listener {
 
     public FactionSetHomeListener()
     {
-        cannotSetHomeManuallyError = FactionsNexusController.plugin.getConfig().getString("cannotSetHomeManuallyError");
+        cannotSetHomeManuallyError = FactionsModuleController.plugin.getConfig().getString("cannotSetHomeManuallyError");
     }
 
     @EventHandler

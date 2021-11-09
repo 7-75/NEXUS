@@ -1,28 +1,23 @@
 package brawl.nexuscore;
 
+import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
-import com.elmakers.mine.bukkit.api.magic.MagicAPI;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NexusController {
 
-    public static MagicAPI      magicAPI;
-    public static JavaPlugin    plugin;
-    public static String        nexusWandTemplateKey;
-    public static String        nexusMagicBlockTemplateKey;
-    public static String        nexusPhysicalBlockTemplate;
-    public static String        parameterToBeProportionalToPower;
-    public static String        spellToCastFromTheNexus;
-    public static Long          barrierRefreshRate;
+    public static JavaPlugin                        plugin;
+    public static String                            nexusBlockMaterial;
+    public static String                            nexusItemLore;
+    public static List<Location>                    nexusBlocks;
 
-    public NexusController(JavaPlugin plugin, MagicAPI magicAPI)
-    {
-        NexusController.plugin              = plugin;
-        NexusController.magicAPI            = magicAPI;
-        nexusWandTemplateKey                = plugin.getConfig().getString("nexusWandTemplateKey");
-        nexusMagicBlockTemplateKey          = plugin.getConfig().getString("nexusMagicBlockTemplateKey");
-        nexusPhysicalBlockTemplate          = plugin.getConfig().getString("nexusPhysicalBlockTemplate");
-        parameterToBeProportionalToPower    = plugin.getConfig().getString("parameterToBeProportionalToPower");
-        spellToCastFromTheNexus             = plugin.getConfig().getString("spellToCastFromTheNexus");
-        barrierRefreshRate                  = plugin.getConfig().getLong("barrierRefreshRate");
+    public NexusController(JavaPlugin plugin) {
+        NexusController.plugin      = plugin;
+        nexusBlockMaterial          = plugin.getConfig().getString("nexusBlockMaterial");
+        nexusItemLore               = plugin.getConfig().getString("nexusItemLore");
+        nexusBlocks                 = new ArrayList<Location>();
+
     }
 }
