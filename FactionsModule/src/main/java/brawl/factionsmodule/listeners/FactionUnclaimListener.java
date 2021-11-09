@@ -1,7 +1,8 @@
 package brawl.factionsmodule.listeners;
 
-import brawl.factionsmodule.FactionsNexusController;
-import brawl.factionsmodule.util.SchedulerOperations;
+import brawl.factionsmodule.FactionsModuleController;
+import brawl.nexuscore.util.NexusOperations;
+import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimEvent;
@@ -9,8 +10,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import brawl.factionsmodule.util.FactionAddonOperations;
-import brawl.nexuscore.util.NexusOperations;
 
 import java.util.HashMap;
 
@@ -20,7 +19,7 @@ public class FactionUnclaimListener implements Listener {
 
     public FactionUnclaimListener()
     {
-        unclaimWarnMessage      = FactionsNexusController.plugin.getConfig().getString("unclaimWarnMessage");
+        unclaimWarnMessage      = FactionsModuleController.plugin.getConfig().getString("unclaimWarnMessage");
         alreadyWarned           = new HashMap<>();
     }
 
@@ -35,7 +34,7 @@ public class FactionUnclaimListener implements Listener {
             return;
 
 
-        Location    location                    = faction.getHome().getBlock().getLocation();
+        Location    location                    = faction.getHome();
         boolean     NexusIsInChunk              = event.getLocation().isInChunk(location);
 
         if (!NexusIsInChunk)
@@ -60,12 +59,8 @@ public class FactionUnclaimListener implements Listener {
             return;
         }
 
-        FactionAddonOperations.removeFromMap(faction);
-        FactionAddonOperations.removeMagicBlockFromMap(location);
-        FactionsNexusController.board.unclaimAll(faction.getId());
+        WorldOperations.removeFromMap(location);
+        FactionsModuleController.board.unclaimAll(faction.getId());
         NexusOperations.addToInventory(player);
-
-        int taskId = SchedulerOperations.getTaskByFactionId(faction.getId()).taskId;
-        FactionsNexusController.bukkitScheduler.cancelTask(taskId);
     }
 }

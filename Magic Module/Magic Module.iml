@@ -46,5 +46,14 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-commons:9.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-tree:9.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-analysis:9.1" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.elmakers.mine.bukkit:MagicAPI:10.2-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../.idea/libraries/MagicAPI-10.2-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

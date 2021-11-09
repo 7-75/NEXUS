@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FactionsModule/FactionsModule.iml" filepath="$PROJECT_DIR$/FactionsModule/FactionsModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Magic Module/Magic Module.iml" filepath="$PROJECT_DIR$/Magic Module/Magic Module.iml" />
       <module fileurl="file://$PROJECT_DIR$/NexusCore/NexusCore.iml" filepath="$PROJECT_DIR$/NexusCore/NexusCore.iml" />
     </modules>
   </component>
