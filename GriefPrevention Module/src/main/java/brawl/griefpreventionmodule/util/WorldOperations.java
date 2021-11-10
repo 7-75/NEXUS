@@ -4,6 +4,7 @@ import brawl.nexuscore.NexusController;
 import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,22 +19,19 @@ public class WorldOperations {
         Location topLocation    = claim.getGreaterBoundaryCorner();
         Location bottomLocation = claim.getLesserBoundaryCorner();
 
-        System.out.println(topLocation);
-        System.out.println(bottomLocation);
+        World world = topLocation.getWorld();
 
-        double x;
-        double y;
-        double z;
+        int x;
+        int y;
+        int z;
 
-        x = Math.round((topLocation.getX()+bottomLocation.getX())/2);
-        y = Math.round((topLocation.getY()+bottomLocation.getY())/2);
-        z = Math.round((topLocation.getZ()+bottomLocation.getZ())/2);
+        x = (int) (topLocation.getX()+bottomLocation.getX())/2;
+        z = (int) (topLocation.getZ()+bottomLocation.getZ())/2;
+        y = getHighestY(world,x,z);
 
-        Location centerLocation = new Location(topLocation.getWorld(), x, y, z);
+        Location centerLocation = new Location(world, x, y, z);
 
         centerLocation.getBlock().setType(Objects.requireNonNull(nexusMaterial));
-
-        System.out.println(centerLocation);
 
         return centerLocation;
     }
@@ -50,4 +48,15 @@ public class WorldOperations {
 
         return locations;
     }
+
+    public static int getHighestY(World world, int x, int z){
+        int i = 255;
+        while(i>0){
+            if(new Location(world, x, i, z).getBlock().getType()!=Material.AIR)
+                return i;
+            i--;
+        }
+        return 0;
+    }
+
 }

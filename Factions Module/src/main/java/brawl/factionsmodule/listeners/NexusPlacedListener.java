@@ -11,13 +11,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class NexusCreatedListener implements Listener {
+public class NexusPlacedListener implements Listener {
 
     public String youCannotPlaceWhileNotInAFactionError;
     public String youCannotPlaceInsideUnclaimedError;
     public String yourHomeWasSetMessage;
 
-    public NexusCreatedListener() {
+    public NexusPlacedListener() {
         youCannotPlaceInsideUnclaimedError      = FactionsModuleController.plugin.getConfig().getString("youCannotPlaceInsideUnclaimedError");
         youCannotPlaceWhileNotInAFactionError   = FactionsModuleController.plugin.getConfig().getString("youCannotPlaceWhileNotInAFactionError");
         yourHomeWasSetMessage                   = FactionsModuleController.plugin.getConfig().getString("yourHomeWasSetMessage");

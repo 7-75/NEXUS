@@ -52,7 +52,7 @@ public final class FactionsModule extends JavaPlugin {
     private void registerListeners()
     {
         PluginManager pluginManager = getServer().getPluginManager();
-        pluginManager.registerEvents(new NexusCreatedListener(),this);
+        pluginManager.registerEvents(new NexusPlacedListener(),this);
         pluginManager.registerEvents(new NexusDestroyedListener(), this);
         pluginManager.registerEvents(new FactionCreateListener(), this);
         pluginManager.registerEvents(new FactionDisbandListener(), this);

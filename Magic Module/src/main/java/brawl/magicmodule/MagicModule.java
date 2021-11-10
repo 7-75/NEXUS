@@ -1,5 +1,6 @@
 package brawl.magicmodule;
 
+import brawl.magicmodule.listeners.NexusCreatedListener;
 import brawl.magicmodule.listeners.NexusPlacedListener;
 import brawl.magicmodule.listeners.NexusBrokenListener;
 import brawl.magicmodule.util.MagicOperations;
@@ -38,6 +39,7 @@ public final class MagicModule extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new NexusPlacedListener(),this);
         pluginManager.registerEvents(new NexusBrokenListener(),this);
+        pluginManager.registerEvents(new NexusCreatedListener(),this);
     }
 
 
