@@ -2,19 +2,14 @@ package brawl.magicmodule.util;
 
 import brawl.magicmodule.MagicModuleController;
 import org.bukkit.Location;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.MemoryConfiguration;
 
 public class MagicOperations {
 
     public static void addMagicBlockToMap(Location location)
     {
 
-        ConfigurationSection config = new MemoryConfiguration();
-        config.set("cast.spells", MagicModuleController.spellToCastFromTheNexus);
-
         MagicModuleController.magicAPI.getController().addMagicBlock
-                (location, MagicModuleController.nexusMagicBlockTemplateKey, null, null, config);
+                (location, MagicModuleController.nexusMagicBlockTemplateKey, null, null, null);
 
 
     }

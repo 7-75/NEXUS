@@ -73,6 +73,13 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>brawl.nexuscore</groupId>
+            <artifactId>NexusCore-1.0-SNAPSHOT</artifactId>
+            <version>1.1-RELEASE</version>
+            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.0-SNAPSHOT.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+        <dependency>
             <groupId>com.elmakers.mine.bukkit</groupId>
             <artifactId>MagicAPI</artifactId>
             <version>10.2-SNAPSHOT</version>
