@@ -2,7 +2,7 @@ package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
 import brawl.factionsmodule.util.FactionsOperations;
-import brawl.nexuscore.events.NexusCreatedEvent;
+import brawl.nexuscore.events.NexusPlacedEvent;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
 import com.massivecraft.factions.Faction;
@@ -24,7 +24,7 @@ public class NexusCreatedListener implements Listener {
     }
 
         @EventHandler
-    public void created(NexusCreatedEvent event)
+    public void created(NexusPlacedEvent event)
     {
         Player player                   = event.getPlayer();
         FPlayer fPlayer                 = FPlayers.getInstance().getByPlayer(player);

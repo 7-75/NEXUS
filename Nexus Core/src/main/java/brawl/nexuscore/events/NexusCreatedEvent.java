@@ -1,21 +1,38 @@
 package brawl.nexuscore.events;
 
 import brawl.nexuscore.NexusController;
+import org.bukkit.Location;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class NexusCreatedEvent extends BlockPlaceEvent {
+public class NexusCreatedEvent extends Event implements Cancellable {
 
-    BlockPlaceEvent event;
+    private final Location  location;
     private boolean isCancelled;
-    private static final HandlerList HANDLERS = new HandlerList();
 
-    public NexusCreatedEvent(BlockPlaceEvent event) {
-        super(event.getBlockPlaced(),event.getBlockReplacedState(),event.getBlockPlaced(),event.getItemInHand(),event.getPlayer(),event.canBuild(),event.getHand());
-        this.event = event;
-        NexusController.nexusBlocks.add(event.getBlock().getLocation());
+    public NexusCreatedEvent(Location location)
+    {
+        this.location = location;
+        NexusController.nexusBlocks.add(location);
     }
+
+    public boolean isCancelled() {
+        return this.isCancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+
+        if (isCancelled)
+        {
+            NexusController.nexusBlocks.add(location);
+        }
+    }
+
+    private static final HandlerList HANDLERS = new HandlerList();
 
     @Override
     public @NotNull HandlerList getHandlers() {
@@ -26,19 +43,8 @@ public class NexusCreatedEvent extends BlockPlaceEvent {
         return HANDLERS;
     }
 
-    @Override
-    public boolean isCancelled() {
-        return this.isCancelled;
-    }
-
-    @Override
-    public void setCancelled(boolean isCancelled) {
-
-        if (isCancelled)
-        {
-            event.setCancelled(true);
-            NexusController.nexusBlocks.remove(event.getBlock().getLocation());
-        }
-        this.isCancelled = isCancelled;
+    public Location getLocation()
+    {
+        return this.location;
     }
 }

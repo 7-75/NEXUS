@@ -49,7 +49,7 @@
     <orderEntry type="module-library">
       <library name="Maven: brawl.nexuscore:NexusCore-1.0-SNAPSHOT:1.1-RELEASE">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Nexus Core/target/NexusCore-1.0-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Nexus Core/target/NexusCore-1.1-RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

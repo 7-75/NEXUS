@@ -7,16 +7,17 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class NexusRemovedEvent extends Event implements Cancellable {
+public class NexusBrokenEvent extends Event implements Cancellable {
 
         private final Location  location;
         private boolean isCancelled;
 
-        public NexusRemovedEvent(Location location){
+        public NexusBrokenEvent(Location location){
             this.location = location;
             this.isCancelled = false;
             NexusController.nexusBlocks.remove(location);
         }
+
         @Override
         public boolean isCancelled() {
             return this.isCancelled;

@@ -1,13 +1,13 @@
 package brawl.magicmodule.listeners;
 
 import brawl.magicmodule.util.MagicOperations;
-import brawl.nexuscore.events.NexusRemovedEvent;
+import brawl.nexuscore.events.NexusBrokenEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class NexusRemovedListener implements Listener {
+public class NexusBrokenListener implements Listener {
     @EventHandler
-    public void destroyed(NexusRemovedEvent event)
+    public void broken(NexusBrokenEvent event)
     {
         MagicOperations.removeMagicBlockFromMap(event.getLocation());
     }

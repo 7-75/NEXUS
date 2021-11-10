@@ -2,7 +2,7 @@ package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
 import brawl.factionsmodule.util.FactionsOperations;
-import brawl.nexuscore.events.NexusRemovedEvent;
+import brawl.nexuscore.events.NexusBrokenEvent;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.Factions;
 import net.kyori.adventure.text.Component;
@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 
 public class NexusDestroyedListener implements Listener {
     @EventHandler
-    public void destroyed(NexusRemovedEvent event) {
+    public void destroyed(NexusBrokenEvent event) {
         Location brokenBlockLocation = event.getLocation();
 
         Faction faction = FactionsOperations.getFactionByLocation(brokenBlockLocation);

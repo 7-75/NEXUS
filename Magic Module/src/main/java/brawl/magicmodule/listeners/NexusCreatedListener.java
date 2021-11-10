@@ -9,7 +9,6 @@ public class NexusCreatedListener implements Listener {
     @EventHandler
     public void created(NexusCreatedEvent event)
     {
-        if(!event.isCancelled())
-            MagicOperations.addMagicBlockToMap(event.getBlock().getLocation());
+        MagicOperations.addMagicBlockToMap(event.getLocation());
     }
 }

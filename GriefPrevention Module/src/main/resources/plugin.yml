@@ -1,9 +1,9 @@
-name: GriefPrevention Module
+name: GriefPreventionModule
 version: '${project.version}'
 main: brawl.griefpreventionmodule.GriefPreventionModule
 api-version: 1.17
 prefix: GriefPrevention Module
-depend: [ NexusCore ]
+depend: [ NexusCore, GriefPrevention ]
 authors: [ millemila ]
 description: NexusCore module for GriefPrevention
 website: brawlmc.com

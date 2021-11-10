@@ -1,6 +1,6 @@
 package brawl.nexuscore.listeners;
 
-import brawl.nexuscore.events.NexusCreatedEvent;
+import brawl.nexuscore.events.NexusPlacedEvent;
 import brawl.nexuscore.util.NexusOperations;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -25,8 +25,7 @@ public class BlockPlaceListener implements Listener {
 
         if (!NexusOperations.isNexus(placedItem))
             return;
-        NexusCreatedEvent nexusCreated =
-                new NexusCreatedEvent(event);
-        Bukkit.getPluginManager().callEvent(nexusCreated);
+        NexusPlacedEvent nexusPlaced = new NexusPlacedEvent(event);
+        Bukkit.getPluginManager().callEvent(nexusPlaced);
     }
 }
