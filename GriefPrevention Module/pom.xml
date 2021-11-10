@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>brawl</groupId>
-    <artifactId>FactionsModule</artifactId>
-    <version>1.1-RELEASE</version>
+    <artifactId>GriefPreventionModule</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>FactionsModule</name>
+    <name>GriefPrevention Module</name>
 
-    <description>Factions add-on for NexusCore</description>
+    <description>NexusCore module for GriefPrevention</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -56,38 +56,37 @@
 
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+        <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>factions-repo</id>
-            <url>https://ci.ender.zone/plugin/repository/everything/</url>
-        </repository>
-        <repository>
-            <id>papermc</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>com.massivecraft</groupId>
-            <artifactId>Factions</artifactId>
-            <version>1.6.9.5-U0.6.0</version>
+            <groupId>com.github.TechFortress</groupId>
+            <artifactId>GriefPrevention</artifactId>
+            <version>16.17.1</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>brawl.nexuscore</groupId>
-            <artifactId>NexusCore-1.1-RELEASE</artifactId>
-            <version>1.1-RELEASE</version>
-            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.1-RELEASE.jar</systemPath>
-            <scope>system</scope>
         </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>brawl</groupId>
+            <artifactId>NexusCore</artifactId>
+            <version>1.1-RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

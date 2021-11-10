@@ -11,12 +11,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MagicModule extends JavaPlugin {
 
-    private MagicModuleController magicModuleController;
     private MagicOperations magicOperations;
 
     @Override
     public void onEnable() {
-        magicModuleController = new MagicModuleController(this, getMagicAPI());
+        MagicModuleController.initialize(this, getMagicAPI());
         writeDefaultConfig();
         registerListeners();
     }
@@ -32,10 +31,6 @@ public final class MagicModule extends JavaPlugin {
             return null;
         }
         return (MagicAPI)magicPlugin;
-    }
-
-    public MagicModuleController getMagicModuleController() {
-        return  magicModuleController;
     }
 
     void registerListeners()

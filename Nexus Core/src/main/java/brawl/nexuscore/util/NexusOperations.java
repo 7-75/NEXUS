@@ -26,9 +26,9 @@ public class NexusOperations {
 
     }
 
-    public static void removeFromPlayer(Inventory inventory) {
+    public static void removeFromPlayer(Player player) {
 
-        inventory.remove(nexusBlockFactory());
+        player.getInventory().remove(nexusBlockFactory());
 
 
     }

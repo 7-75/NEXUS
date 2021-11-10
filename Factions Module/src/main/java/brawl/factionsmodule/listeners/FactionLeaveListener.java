@@ -5,9 +5,9 @@ import brawl.nexuscore.util.NexusOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FPlayerLeaveEvent;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.Inventory;
 
 public class FactionLeaveListener implements Listener {
 
@@ -24,11 +24,11 @@ public class FactionLeaveListener implements Listener {
 
         FPlayer     fPlayer             = event.getfPlayer();
         Faction     faction             = fPlayer.getFaction();
-        Inventory   inventory           = fPlayer.getPlayer().getInventory();
+        Player      player              = fPlayer.getPlayer();
 
         if (faction.getFPlayers().size() == 1)
         {
-            NexusOperations.removeFromPlayer(inventory);
+            NexusOperations.removeFromPlayer(player);
         }
 
     }
