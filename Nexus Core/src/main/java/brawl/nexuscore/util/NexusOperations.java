@@ -14,6 +14,7 @@ import java.util.Objects;
 
 public class NexusOperations {
 
+
     public static void addToInventory(Player player) throws Exception {
         Inventory inventory = player.getInventory();
 
@@ -29,7 +30,6 @@ public class NexusOperations {
     public static void removeFromPlayer(Player player) {
 
         player.getInventory().remove(nexusBlockFactory());
-
 
     }
 

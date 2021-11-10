@@ -1,10 +1,12 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
+import brawl.nexuscore.NexusController;
 import brawl.nexuscore.util.NexusOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FPlayerLeaveEvent;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,10 +27,12 @@ public class FactionLeaveListener implements Listener {
         FPlayer     fPlayer             = event.getfPlayer();
         Faction     faction             = fPlayer.getFaction();
         Player      player              = fPlayer.getPlayer();
+        Location location            = faction.getHome();
 
         if (faction.getFPlayers().size() == 1)
         {
             NexusOperations.removeFromPlayer(player);
+            NexusController.nexusBlocks.remove(location);
         }
 
     }
