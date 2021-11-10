@@ -18,18 +18,15 @@ public class BlockPlaceListener implements Listener {
     public void blockPlace(BlockPlaceEvent event) {
         Block placedBlock = event.getBlockPlaced();
         Material placedMaterial = placedBlock.getBlockData().getMaterial();
-
-        if (placedMaterial != NexusOperations.nexusBlockFactory().getType())
+        if (placedMaterial != NexusOperations.nexusBlockFactory().getType()) {
             return;
-
+        }
         ItemStack placedItem = event.getItemInHand();
 
         if (!NexusOperations.isNexus(placedItem))
             return;
-
         NexusCreatedEvent nexusCreated =
                 new NexusCreatedEvent(event);
         Bukkit.getPluginManager().callEvent(nexusCreated);
-
     }
 }

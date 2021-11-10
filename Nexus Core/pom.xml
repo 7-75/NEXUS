@@ -6,7 +6,7 @@
 
     <groupId>brawl</groupId>
     <artifactId>NexusCore</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>NexusCore</name>
@@ -67,19 +67,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.6</version>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version>
         </dependency>
         <dependency>
             <groupId>com.elmakers.magic</groupId>

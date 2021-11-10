@@ -13,14 +13,11 @@ public final class NexusCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        nexusController = new NexusController(this);
+        NexusController.initialise(this);
         writeDefaultConfig();
+        IOOperations.createNexusConfig();
+        IOOperations.deserializeNexuses();
         registerEvents();
-        try {
-            IOOperations.readNexusesFromFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void writeDefaultConfig()
@@ -49,7 +46,7 @@ public final class NexusCore extends JavaPlugin {
     @Override
     public void onDisable() {
         try {
-            IOOperations.writeNexusesToFile();
+            IOOperations.serializeNexuses();
         } catch (IOException e) {
             e.printStackTrace();
         }

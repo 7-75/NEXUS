@@ -31,8 +31,6 @@ public class NexusCreatedListener implements Listener {
         Faction faction                 = fPlayer.getFaction();
         Location placedBlockLocation    = event.getBlock().getLocation();
 
-        System.out.println("test0:check");
-
         if (!fPlayer.hasFaction())
         {
             assert youCannotPlaceWhileNotInAFactionError != null;

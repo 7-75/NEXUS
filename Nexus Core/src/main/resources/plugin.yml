@@ -3,8 +3,6 @@ version: '${project.version}'
 main: brawl.nexuscore.NexusCore
 api-version: 1.17
 prefix: NexusCore
-depend:
-  - "Magic"
 authors: [millemila]
 description: Core plugin for the Nexus series of plugins
 website: www.brawlmc.com

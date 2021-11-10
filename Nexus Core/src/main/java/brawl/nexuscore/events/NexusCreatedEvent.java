@@ -14,6 +14,7 @@ public class NexusCreatedEvent extends BlockPlaceEvent {
     public NexusCreatedEvent(BlockPlaceEvent event) {
         super(event.getBlockPlaced(),event.getBlockReplacedState(),event.getBlockPlaced(),event.getItemInHand(),event.getPlayer(),event.canBuild(),event.getHand());
         this.event = event;
+        NexusController.nexusBlocks.add(event.getBlock().getLocation());
     }
 
     @Override
