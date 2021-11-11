@@ -37,7 +37,7 @@ public class NexusPlacedListener implements Listener {
             event.getPlayer().sendMessage(youCannotPlaceWhileNotInAFactionError);
             event.setCancelled(true);
         }
-        else if (FactionsOperations.IsInsideClaim(placedBlockLocation,faction))
+        else if (FactionsOperations.isInsideClaim(placedBlockLocation,faction))
         {
 
             faction.setHome(placedBlockLocation);

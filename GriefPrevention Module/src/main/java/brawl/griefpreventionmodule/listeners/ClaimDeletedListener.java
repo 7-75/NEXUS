@@ -1,7 +1,9 @@
 package brawl.griefpreventionmodule.listeners;
 
-import brawl.griefpreventionmodule.util.WorldOperations;
+import brawl.griefpreventionmodule.utils.GriefPreventionOperations;
 import brawl.nexuscore.events.NexusBrokenEvent;
+import brawl.nexuscore.util.WorldOperations;
+import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.events.ClaimDeletedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -16,7 +18,10 @@ public class ClaimDeletedListener implements Listener {
     public void claimDeleted(ClaimDeletedEvent event) throws Exception {
         Player player = Bukkit.getPlayer(event.getClaim().getOwnerID());
         assert player != null;
-        List<Location> nexusLocations = WorldOperations.removeFromClaim(event.getClaim());
+
+        Claim claim = event.getClaim();
+        List<Location> nexusLocations = WorldOperations.removeFromClaim(
+                GriefPreventionOperations.getNexusLocationsFromClaim(claim));
 
         for (Location location: nexusLocations
              ) {

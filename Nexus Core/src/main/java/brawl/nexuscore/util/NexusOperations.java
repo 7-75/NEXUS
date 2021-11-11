@@ -2,7 +2,6 @@ package brawl.nexuscore.util;
 
 import brawl.nexuscore.NexusController;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -35,7 +34,7 @@ public class NexusOperations {
 
     public static ItemStack nexusBlockFactory()
     {
-        ItemStack i = new ItemStack(Objects.requireNonNull(Material.getMaterial(NexusController.nexusBlockMaterial)));
+        ItemStack i = new ItemStack(Objects.requireNonNull(NexusController.nexusBlockMaterial));
         ItemMeta im = i.getItemMeta();
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(NexusController.nexusItemLore));

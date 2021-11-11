@@ -2,14 +2,26 @@ package brawl.magicmodule.util;
 
 import brawl.magicmodule.MagicModuleController;
 import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.MemoryConfiguration;
 
 public class MagicOperations {
 
-    public static void addMagicBlockToMap(Location location)
+    private static final String spellTemplateKey           = MagicModuleController.plugin.getConfig().getString("spellTemplateKey");
+    private static final String parameterToAlterKey        = MagicModuleController.plugin.getConfig().getString("parameterToAlterKey");
+
+    public static void addMagicBlockToMap(Location location, int parameterValue)
     {
+        ConfigurationSection config;
+        config = null;
+
+        if (parameterValue != -1) {
+            config = new MemoryConfiguration();
+            config.set("cast.spells", spellTemplateKey + " " + parameterToAlterKey + " " + parameterValue);
+        }
 
         MagicModuleController.magicAPI.getController().addMagicBlock
-                (location, MagicModuleController.nexusMagicBlockTemplateKey, null, null, null);
+                (location, MagicModuleController.nexusMagicBlockTemplateKey, null, null, config);
 
 
     }

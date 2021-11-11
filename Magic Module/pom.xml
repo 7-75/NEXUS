@@ -80,6 +80,13 @@
             <scope>system</scope>
         </dependency>
         <dependency>
+            <groupId>brawl.griefprevention</groupId>
+            <artifactId>GriefPreventionModule-1.0-SNAPSHOT.jar</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <systemPath>${basedir}/../GriefPrevention Module/target/GriefPreventionModule-1.0-SNAPSHOT.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+        <dependency>
             <groupId>com.elmakers.mine.bukkit</groupId>
             <artifactId>MagicAPI</artifactId>
             <version>10.2-SNAPSHOT</version>

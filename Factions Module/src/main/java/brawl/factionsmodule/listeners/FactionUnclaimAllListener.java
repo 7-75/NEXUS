@@ -1,10 +1,11 @@
 package brawl.factionsmodule.listeners;
 
+import brawl.nexuscore.events.NexusBrokenEvent;
 import brawl.nexuscore.util.NexusOperations;
-import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimAllEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,7 +33,11 @@ public class FactionUnclaimAllListener implements Listener {
             return;
         }
 
-        WorldOperations.removeFromMap(location);
+        NexusBrokenEvent nexusBrokenEvent = new NexusBrokenEvent(location);
+        Bukkit.getPluginManager().callEvent(nexusBrokenEvent);
+
         NexusOperations.addToInventory(player);
+
+
     }
 }

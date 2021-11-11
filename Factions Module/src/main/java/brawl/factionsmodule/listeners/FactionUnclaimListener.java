@@ -1,11 +1,12 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
+import brawl.nexuscore.events.NexusBrokenEvent;
 import brawl.nexuscore.util.NexusOperations;
-import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,12 +14,16 @@ import org.bukkit.event.Listener;
 
 import java.util.HashMap;
 
+
 public class FactionUnclaimListener implements Listener {
     HashMap<Player, Boolean>        alreadyWarned;
     String                          unclaimWarnMessage;
+    boolean                         autoCenterChunkMode;
+
 
     public FactionUnclaimListener()
     {
+        autoCenterChunkMode        = FactionsModuleController.plugin.getConfig().getBoolean("autoCenterChunkMode");
         unclaimWarnMessage      = FactionsModuleController.plugin.getConfig().getString("unclaimWarnMessage");
         alreadyWarned           = new HashMap<>();
     }
@@ -58,9 +63,15 @@ public class FactionUnclaimListener implements Listener {
             event.setCancelled(true);
             return;
         }
-
-        WorldOperations.removeFromMap(location);
+;
         FactionsModuleController.board.unclaimAll(faction.getId());
-        NexusOperations.addToInventory(player);
+
+        if (autoCenterChunkMode)
+            NexusOperations.addToInventory(player);
+        {
+            NexusBrokenEvent nexusBrokenEvent = new NexusBrokenEvent(location);
+            Bukkit.getPluginManager().callEvent(nexusBrokenEvent);
+        }
+
     }
 }

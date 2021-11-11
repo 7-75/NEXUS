@@ -19,7 +19,8 @@ public class FactionsOperations {
 
     }
 
-    public static boolean IsInsideClaim(Location location, Faction faction)
+
+    public static boolean isInsideClaim(Location location, Faction faction)
     { return Board
             .getInstance()
             .getAllClaims(faction)

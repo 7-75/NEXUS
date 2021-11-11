@@ -56,6 +56,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="Maven: brawl.griefprevention:GriefPreventionModule-1.0-SNAPSHOT.jar:1.0-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../GriefPrevention Module/target/GriefPreventionModule-1.0-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="Maven: com.elmakers.mine.bukkit:MagicAPI:10.2-SNAPSHOT">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../.idea/libraries/MagicAPI-10.2-SNAPSHOT.jar!/" />

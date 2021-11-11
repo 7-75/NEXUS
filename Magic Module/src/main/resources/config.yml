@@ -1,1 +1,4 @@
 nexusMagicBlockTemplateKey: "Nexus"
+spellTemplateKey: "nexusShellSpell"
+parameterToAlterKey: "radius"
+radiusEqualsGPClaimRadius: true

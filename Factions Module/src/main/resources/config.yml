@@ -1,3 +1,5 @@
+autoCenterChunkMode: true
+
 youCannotPlaceWhileNotInAFactionError: "You cannot place a beacon block while not being in a faction."
 youCannotPlaceInsideUnclaimedError: "You cannot place inside unclaimed territory."
 cannotSetHomeManuallyError: "You cannot set your home manually, use a nexus block."

@@ -52,14 +52,20 @@ public final class FactionsModule extends JavaPlugin {
     private void registerListeners()
     {
         PluginManager pluginManager = getServer().getPluginManager();
-        pluginManager.registerEvents(new NexusPlacedListener(),this);
+
         pluginManager.registerEvents(new NexusDestroyedListener(), this);
-        pluginManager.registerEvents(new FactionCreateListener(), this);
-        pluginManager.registerEvents(new FactionDisbandListener(), this);
-        pluginManager.registerEvents(new FactionLeaveListener(),this);
-        pluginManager.registerEvents(new FactionSetHomeListener(), this);
-        pluginManager.registerEvents(new FactionUnclaimAllListener(),this);
         pluginManager.registerEvents(new FactionUnclaimListener(),this);
+        pluginManager.registerEvents(new FactionUnclaimAllListener(),this);
+        pluginManager.registerEvents(new FactionDisbandListener(), this);
+        pluginManager.registerEvents(new FactionSetHomeListener(), this);
+        pluginManager.registerEvents(new FactionLeaveListener(),this);
+
+        if(!this.getConfig().getBoolean("autoCenterChunkMode"))
+        {
+            pluginManager.registerEvents(new NexusPlacedListener(),this);
+            pluginManager.registerEvents(new FactionCreateListener(), this);
+        }
+
 
     }
 

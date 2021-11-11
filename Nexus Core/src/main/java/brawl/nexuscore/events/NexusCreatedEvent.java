@@ -9,13 +9,22 @@ import org.jetbrains.annotations.NotNull;
 
 public class NexusCreatedEvent extends Event implements Cancellable {
 
-    private final Location  location;
-    private boolean isCancelled;
+    private final   Location    location;
+    private int                 radius;
+    private boolean             isCancelled;
 
     public NexusCreatedEvent(Location location)
     {
         this.location = location;
         NexusController.nexusBlocks.add(location);
+    }
+
+    public NexusCreatedEvent(Location location, int radius)
+    {
+        this.location = location;
+        this.radius   = radius;
+        NexusController.nexusBlocks.add(location);
+
     }
 
     public boolean isCancelled() {
@@ -41,6 +50,11 @@ public class NexusCreatedEvent extends Event implements Cancellable {
 
     public static HandlerList getHandlerList() {
         return HANDLERS;
+    }
+
+    public int getRadius()
+    {
+        return this.radius;
     }
 
     public Location getLocation()

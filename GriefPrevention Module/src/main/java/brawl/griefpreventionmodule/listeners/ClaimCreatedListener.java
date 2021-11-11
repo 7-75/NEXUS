@@ -1,7 +1,7 @@
 package brawl.griefpreventionmodule.listeners;
 
-import brawl.griefpreventionmodule.util.WorldOperations;
 import brawl.nexuscore.events.NexusCreatedEvent;
+import brawl.nexuscore.util.WorldOperations;
 import me.ryanhamshire.GriefPrevention.events.ClaimCreatedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -16,9 +16,21 @@ public class ClaimCreatedListener implements Listener {
         Player player = Bukkit.getPlayer(event.getClaim().getOwnerID());
         assert player != null;
 
-        Location nexusLocation = WorldOperations.addNexusToCenterOfClaim(event.getClaim());
 
-        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(nexusLocation);
+        Location lesserBoundaryCorner = event.getClaim().getLesserBoundaryCorner();
+        Location greaterBoundaryCorner = event.getClaim().getGreaterBoundaryCorner();
+
+        Location nexusLocation = WorldOperations.addNexusToChunk(
+                greaterBoundaryCorner,
+                lesserBoundaryCorner
+        );
+
+        int radius = WorldOperations.getRadius(
+                lesserBoundaryCorner,
+                greaterBoundaryCorner
+                );
+
+        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(nexusLocation, radius );
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);
     }
 }

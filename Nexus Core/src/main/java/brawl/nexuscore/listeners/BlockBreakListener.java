@@ -19,9 +19,8 @@ public class BlockBreakListener implements Listener{
         Location brokenBlockLocation = brokenBlock.getLocation();
 
         assert NexusController.nexusBlockMaterial != null;
-        Material nexusBlockMaterial = Material.getMaterial(NexusController.nexusBlockMaterial);
 
-        if (!brokenMaterial.equals(nexusBlockMaterial))
+        if (!brokenMaterial.equals(NexusController.nexusBlockMaterial))
             return;
 
         if (!NexusController.nexusBlocks.contains(brokenBlockLocation))
