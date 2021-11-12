@@ -1,6 +1,7 @@
 package brawl.nexuscore.events;
 
 import brawl.nexuscore.NexusController;
+import brawl.nexuscore.util.WorldOperations;
 import org.bukkit.Location;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -10,20 +11,17 @@ import org.jetbrains.annotations.NotNull;
 public class NexusCreatedEvent extends Event implements Cancellable {
 
     private final   Location    location;
-    private int                 radius;
+    private final   double      adaptiveParameterValue;
     private boolean             isCancelled;
 
-    public NexusCreatedEvent(Location location)
-    {
-        this.location = location;
-        NexusController.nexusBlocks.add(location);
-    }
+    private static final HandlerList HANDLERS = new HandlerList();
 
-    public NexusCreatedEvent(Location location, int radius)
+    public NexusCreatedEvent(Location location, Double adaptiveParameterValue)
     {
         this.location = location;
-        this.radius   = radius;
+        this.adaptiveParameterValue = adaptiveParameterValue;
         NexusController.nexusBlocks.add(location);
+        WorldOperations.addNexusToLocation(location);
 
     }
 
@@ -41,8 +39,6 @@ public class NexusCreatedEvent extends Event implements Cancellable {
         }
     }
 
-    private static final HandlerList HANDLERS = new HandlerList();
-
     @Override
     public @NotNull HandlerList getHandlers() {
         return HANDLERS;
@@ -52,9 +48,9 @@ public class NexusCreatedEvent extends Event implements Cancellable {
         return HANDLERS;
     }
 
-    public int getRadius()
+    public double getAdaptiveParameterValue()
     {
-        return this.radius;
+        return this.adaptiveParameterValue;
     }
 
     public Location getLocation()

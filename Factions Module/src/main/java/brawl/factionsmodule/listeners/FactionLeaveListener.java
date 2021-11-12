@@ -35,7 +35,8 @@ public class FactionLeaveListener implements Listener {
         {
             NexusOperations.removeFromPlayer(player);
 
-            Location nexusLocation      = WorldOperations.getCenterLocation(location.getChunk());
+            Location nexusLocation = WorldOperations.getNexusAtChunk(location.getChunk());
+
             NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
             Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
 

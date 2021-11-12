@@ -9,6 +9,7 @@ public class NexusPlacedEvent extends BlockPlaceEvent {
 
     BlockPlaceEvent event;
     private boolean isCancelled;
+
     private static final HandlerList HANDLERS = new HandlerList();
 
     public NexusPlacedEvent(BlockPlaceEvent event) {

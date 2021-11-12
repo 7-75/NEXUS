@@ -24,7 +24,6 @@ public class ClaimCreatedListener implements Listener {
                 greaterBoundaryCorner,
                 lesserBoundaryCorner
         );
-        WorldOperations.addNexusToLocation(nexusLocation);
 
 
         int radius = WorldOperations.getRadius(
@@ -32,7 +31,7 @@ public class ClaimCreatedListener implements Listener {
                 greaterBoundaryCorner
                 );
 
-        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(nexusLocation, radius );
+        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(nexusLocation, (double) radius);
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);
     }
 }

@@ -21,6 +21,11 @@ public class WorldOperations {
                 .setType(Material.AIR);
     }
 
+    public static void addNexusToLocation(Location location)
+    {
+        location.getBlock().setType(Objects.requireNonNull(NexusController.nexusBlockMaterial));
+    }
+
 
     public static Location getCenterLocation(Location topLocation, Location bottomLocation)
     {
@@ -46,9 +51,40 @@ public class WorldOperations {
         return center;
     }
 
-    public static void addNexusToLocation(Location location)
+    public static int getHighestY(World world, int x, int z){
+        int i = 255;
+        while(i>0){
+            Location tempLocation = new Location(world, x, i, z);
+            if(tempLocation.getBlock().getType()!=Material.AIR)
+                return i;
+            i--;
+        }
+        return 0;
+    }
+
+    public static Location getNexusAtChunk(Chunk c)
     {
-        location.getBlock().setType(Objects.requireNonNull(NexusController.nexusBlockMaterial));
+        Location center     = new Location(c.getWorld(), c.getX() << 4, 64, c.getZ() << 4).add(8, 0, 8);
+
+        int      centerY    = getNexusY(c.getWorld(),center.getBlockX(),center.getBlockZ());
+
+        if (centerY == -1)
+            return null;
+
+        center.setY(centerY);
+        return center;
+    }
+
+    public static int getNexusY(World world, int x, int z)
+    {
+        int i = 255;
+        while (i>0){
+            Location tempLocation = new Location(world, x, i, z);
+            if(NexusController.nexusBlocks.stream().anyMatch(location -> location.equals(tempLocation)))
+                return i;
+            i--;
+        }
+        return -1;
     }
 
     public static List<Location> removeFromClaim(List<Location> locations)
@@ -57,16 +93,6 @@ public class WorldOperations {
         locations.forEach(location -> location.getBlock().setType(Material.AIR));
 
         return locations;
-    }
-
-    public static int getHighestY(World world, int x, int z){
-        int i = 255;
-        while(i>0){
-            if(new Location(world, x, i, z).getBlock().getType()!=Material.AIR)
-                return i;
-            i--;
-        }
-        return 0;
     }
 
     public static int getRadius(Location lesserBoundaryCorner, Location greaterBoundaryCorner)

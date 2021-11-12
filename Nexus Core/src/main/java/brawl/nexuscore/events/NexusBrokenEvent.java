@@ -10,16 +10,16 @@ import org.jetbrains.annotations.NotNull;
 
 public class NexusBrokenEvent extends BlockBreakEvent implements Cancellable {
 
-        private final Location  location;
-        private boolean         isCancelled;
-        private final Player    player;
+    BlockBreakEvent event;
+    private boolean         isCancelled;
 
-        public NexusBrokenEvent(Location location, Player player){
-            super(location.getBlock(), player);
-            this.location = location;
-            this.player   = player;
+    private static final HandlerList HANDLERS = new HandlerList();
+
+        public NexusBrokenEvent(BlockBreakEvent event){
+            super(event.getBlock(), event.getPlayer());
+            this.event    = event;
             this.isCancelled = false;
-            NexusController.nexusBlocks.remove(location);
+            NexusController.nexusBlocks.remove(event.getBlock().getLocation());
         }
 
         @Override
@@ -33,11 +33,10 @@ public class NexusBrokenEvent extends BlockBreakEvent implements Cancellable {
 
             if (isCancelled)
             {
-                NexusController.nexusBlocks.add(location);
+                event.setCancelled(true);
+                NexusController.nexusBlocks.add(event.getBlock().getLocation());
             }
         }
-
-        private static final HandlerList HANDLERS = new HandlerList();
 
         @Override
         public @NotNull HandlerList getHandlers() {
@@ -50,6 +49,11 @@ public class NexusBrokenEvent extends BlockBreakEvent implements Cancellable {
 
         public Location getLocation()
         {
-            return this.location;
+            return event.getBlock().getLocation();
+        }
+
+        public Player   getPlayer()
+        {
+            return event.getPlayer();
         }
     }

@@ -10,21 +10,15 @@ public class MagicOperations {
     private static final String spellTemplateKey           = MagicModuleController.plugin.getConfig().getString("spellTemplateKey");
     private static final String parameterToAlterKey        = MagicModuleController.plugin.getConfig().getString("parameterToAlterKey");
 
-    public static void addMagicBlockToMap(Location location)
-    {
-        addMagicBlockToMap(location, null);
-    }
-
-    public static void addMagicBlockToMap(Location location, int parameterValue)
+    public static void addMagicBlockToMap(Location location, Double parameterValue)
     {
         ConfigurationSection config;
         config = new MemoryConfiguration();
         config.set("cast.spells", spellTemplateKey + " " + parameterToAlterKey + " " + parameterValue);
-        addMagicBlockToMap(location, config);
-    }
 
-    public static void addMagicBlockToMap(Location location, ConfigurationSection config)
-    {
+        if (parameterValue == 0.0)
+            config = null;
+
         MagicModuleController.magicAPI.getController().addMagicBlock
                 (location, MagicModuleController.nexusMagicBlockTemplateKey, null, null, config);
 

@@ -3,6 +3,7 @@ package brawl.factionsmodule.listeners;
 import brawl.factionsmodule.FactionsModuleController;
 import brawl.factionsmodule.util.FactionsOperations;
 import brawl.nexuscore.events.NexusCreatedEvent;
+import brawl.nexuscore.events.NexusRemovedEvent;
 import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
@@ -69,17 +70,16 @@ public class FactionSetHomeListener implements Listener {
         if(!role.isAtLeast(Role.MODERATOR))
             return;
 
-
-        Location oldChunkCenterLocation = WorldOperations.getCenterLocation(fPlayer.getFaction().getHome().getChunk());
-        WorldOperations.removeFromLocation(oldChunkCenterLocation);
+        if(faction.hasHome())
+        {
+            Location oldChunkCenterLocation = WorldOperations.getCenterLocation(fPlayer.getFaction().getHome().getChunk());
+            NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(oldChunkCenterLocation);
+            Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
+        }
 
         Location chunkCenterLocation = WorldOperations.getCenterLocation(playerLocation.getChunk());
-        WorldOperations.addNexusToLocation(chunkCenterLocation);
-
-        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(chunkCenterLocation);
+        NexusCreatedEvent nexusCreatedEvent
+                = new NexusCreatedEvent(chunkCenterLocation, 0.0);
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);
-
-        faction.setHome(playerLocation);
-        event.setCancelled(true);
     }
 }

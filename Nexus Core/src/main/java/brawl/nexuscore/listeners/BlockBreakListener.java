@@ -26,7 +26,7 @@ public class BlockBreakListener implements Listener{
         if (!NexusController.nexusBlocks.contains(brokenBlockLocation))
             return;
 
-        NexusBrokenEvent nexusBroken = new NexusBrokenEvent(brokenBlockLocation, event.getPlayer());
+        NexusBrokenEvent nexusBroken = new NexusBrokenEvent(event);
         Bukkit.getPluginManager().callEvent(nexusBroken);
         event.setDropItems(false);
     }

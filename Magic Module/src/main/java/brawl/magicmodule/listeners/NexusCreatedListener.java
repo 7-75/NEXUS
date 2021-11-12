@@ -12,9 +12,6 @@ public class NexusCreatedListener implements Listener {
     @EventHandler
     public void created(NexusCreatedEvent event)
     {
-        int radius = -1;
-        if (radiusEqualsGPClaimRadius)
-            radius = event.getRadius();
-        MagicOperations.addMagicBlockToMap(event.getLocation(), radius);
+        MagicOperations.addMagicBlockToMap(event.getLocation(), event.getAdaptiveParameterValue());
     }
 }

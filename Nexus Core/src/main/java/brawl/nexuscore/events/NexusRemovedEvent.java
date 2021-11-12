@@ -13,6 +13,8 @@ public class NexusRemovedEvent extends Event implements Cancellable {
     private final Location  location;
     private boolean isCancelled;
 
+    private static final HandlerList HANDLERS = new HandlerList();
+
     public NexusRemovedEvent(Location location){
         this.location = location;
         this.isCancelled = false;
@@ -34,8 +36,6 @@ public class NexusRemovedEvent extends Event implements Cancellable {
             NexusController.nexusBlocks.add(location);
         }
     }
-
-    private static final HandlerList HANDLERS = new HandlerList();
 
     @Override
     public @NotNull HandlerList getHandlers() {

@@ -13,7 +13,7 @@ public class FactionsOperations {
         return FactionsModuleController.factionsAPI.getAllFactions()
                 .stream()
                 .filter(Faction::hasHome)
-                .filter(faction1 -> faction1.getHome().equals(location))
+                .filter(faction -> faction.getHome().getChunk().equals(location.getChunk()))
                 .findFirst()
                 .orElse(null);
 

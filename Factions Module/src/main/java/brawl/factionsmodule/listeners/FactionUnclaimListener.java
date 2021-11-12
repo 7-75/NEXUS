@@ -4,6 +4,7 @@ import brawl.factionsmodule.FactionsModuleController;
 import brawl.nexuscore.events.NexusRemovedEvent;
 import brawl.nexuscore.util.NexusOperations;
 import brawl.nexuscore.util.WorldOperations;
+import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimEvent;
@@ -30,27 +31,54 @@ public class FactionUnclaimListener implements Listener {
     }
 
     @EventHandler
-    public void factionUnclaim (LandUnclaimEvent event) throws Exception {
+    public void factionUnclaim (LandUnclaimEvent event) {
         FPlayer     fPlayer                     = event.getfPlayer();
         Player      player                      = fPlayer.getPlayer();
         Faction     faction                     = event.getFaction();
         boolean     playerWasAlreadyWarned      = alreadyWarned.containsKey(player);
+        FLocation   fLocation                   = event.getLocation();
+
+
+        System.out.println("test0: check");
+
 
         if (!faction.hasHome())
             return;
 
+        System.out.println("test1: check");
+
         Location    location                    = faction.getHome();
-        boolean     NexusIsInChunk              = event.getLocation().isInChunk(location);
+        boolean     NexusIsInChunk              = fLocation.isInChunk(location);
 
         if (!NexusIsInChunk)
             return;
 
+
+        System.out.println("test2: check");
 
         if (!playerWasAlreadyWarned)
         {
             player.sendMessage(unclaimWarnMessage);
             alreadyWarned.put(player, true);
             event.setCancelled(true);
+            return;
+        }
+
+
+        System.out.println("test3: check");
+
+        FactionsModuleController.board.unclaimAll(faction.getId());
+
+        System.out.println("test4: check");
+
+        Location nexusLocation = WorldOperations.getNexusAtChunk(location.getChunk());
+
+        System.out.println(nexusLocation);
+
+        NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
+        Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
+
+        if (autoCenterChunkMode) {
             return;
         }
 
@@ -61,20 +89,6 @@ public class FactionUnclaimListener implements Listener {
         {
             player.sendMessage(e.getMessage());
             event.setCancelled(true);
-            return;
         }
-;
-
-        if (!autoCenterChunkMode)
-            NexusOperations.addToInventory(player);
-
-        FactionsModuleController.board.unclaimAll(faction.getId());
-
-        Location nexusLocation      = WorldOperations.getCenterLocation(location.getChunk());
-
-        NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
-        Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
-
-
     }
 }
