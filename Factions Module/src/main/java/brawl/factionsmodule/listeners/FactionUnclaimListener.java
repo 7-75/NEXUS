@@ -1,8 +1,9 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
-import brawl.nexuscore.events.NexusBrokenEvent;
+import brawl.nexuscore.events.NexusRemovedEvent;
 import brawl.nexuscore.util.NexusOperations;
+import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimEvent;
@@ -23,7 +24,7 @@ public class FactionUnclaimListener implements Listener {
 
     public FactionUnclaimListener()
     {
-        autoCenterChunkMode        = FactionsModuleController.plugin.getConfig().getBoolean("autoCenterChunkMode");
+        autoCenterChunkMode     = FactionsModuleController.plugin.getConfig().getBoolean("autoCenterChunkMode");
         unclaimWarnMessage      = FactionsModuleController.plugin.getConfig().getString("unclaimWarnMessage");
         alreadyWarned           = new HashMap<>();
     }
@@ -37,7 +38,6 @@ public class FactionUnclaimListener implements Listener {
 
         if (!faction.hasHome())
             return;
-
 
         Location    location                    = faction.getHome();
         boolean     NexusIsInChunk              = event.getLocation().isInChunk(location);
@@ -64,14 +64,17 @@ public class FactionUnclaimListener implements Listener {
             return;
         }
 ;
+
+        if (!autoCenterChunkMode)
+            NexusOperations.addToInventory(player);
+
         FactionsModuleController.board.unclaimAll(faction.getId());
 
-        if (autoCenterChunkMode)
-            NexusOperations.addToInventory(player);
-        {
-            NexusBrokenEvent nexusBrokenEvent = new NexusBrokenEvent(location);
-            Bukkit.getPluginManager().callEvent(nexusBrokenEvent);
-        }
+        Location nexusLocation      = WorldOperations.getCenterLocation(location.getChunk());
+
+        NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
+        Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
+
 
     }
 }

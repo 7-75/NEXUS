@@ -6,7 +6,7 @@
 
     <groupId>brawl</groupId>
     <artifactId>FactionsModule</artifactId>
-    <version>1.1-RELEASE</version>
+    <version>1.2-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>FactionsModule</name>
@@ -78,9 +78,9 @@
         </dependency>
         <dependency>
             <groupId>brawl.nexuscore</groupId>
-            <artifactId>NexusCore-1.1-RELEASE</artifactId>
-            <version>1.1-RELEASE</version>
-            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.1-RELEASE.jar</systemPath>
+            <artifactId>NexusCore-1.2-RELEASE</artifactId>
+            <version>1.2-RELEASE</version>
+            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.2-RELEASE.jar</systemPath>
             <scope>system</scope>
         </dependency>
         <dependency>

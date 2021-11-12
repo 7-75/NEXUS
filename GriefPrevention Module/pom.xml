@@ -6,7 +6,7 @@
 
     <groupId>brawl</groupId>
     <artifactId>GriefPreventionModule</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.2-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>GriefPrevention Module</name>
@@ -85,8 +85,8 @@
         <dependency>
             <groupId>brawl</groupId>
             <artifactId>NexusCore</artifactId>
-            <version>1.1-RELEASE</version>
-            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.1-RELEASE.jar</systemPath>
+            <version>1.2-RELEASE</version>
+            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.2-RELEASE.jar</systemPath>
             <scope>system</scope>
         </dependency>
     </dependencies>

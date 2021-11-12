@@ -47,18 +47,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-tree:9.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-analysis:9.1" level="project" />
     <orderEntry type="module-library">
-      <library name="Maven: brawl.nexuscore:NexusCore-1.0-SNAPSHOT:1.1-RELEASE">
+      <library name="Maven: brawl.nexuscore:NexusCore-1.2-RELEASE:1.2-RELEASE">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Nexus Core/target/NexusCore-1.1-RELEASE.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: brawl.griefprevention:GriefPreventionModule-1.0-SNAPSHOT.jar:1.0-SNAPSHOT">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../GriefPrevention Module/target/GriefPreventionModule-1.0-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Nexus Core/target/NexusCore-1.2-RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -10,6 +10,6 @@ public class NexusPlacedListener implements Listener {
     public void placed(NexusPlacedEvent event)
     {
         if(!event.isCancelled())
-            MagicOperations.addMagicBlockToMap(event.getBlock().getLocation(), -1);
+            MagicOperations.addMagicBlockToMap(event.getBlock().getLocation());
     }
 }

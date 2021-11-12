@@ -1,8 +1,9 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
-import brawl.nexuscore.events.NexusBrokenEvent;
+import brawl.nexuscore.events.NexusRemovedEvent;
 import brawl.nexuscore.util.NexusOperations;
+import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FactionDisbandEvent;
 import org.bukkit.Bukkit;
@@ -34,8 +35,10 @@ public class FactionDisbandListener implements Listener {
             NexusOperations.removeFromPlayer(player);
         else
         {
-            NexusBrokenEvent nexusBrokenEvent = new NexusBrokenEvent(location);
-            Bukkit.getPluginManager().callEvent(nexusBrokenEvent);
+            Location nexusLocation          = WorldOperations.getCenterLocation(location.getChunk());
+
+            NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(location);
+            Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
         }
     }
 }

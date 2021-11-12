@@ -1,7 +1,7 @@
 package brawl.nexuscore.listeners;
 
 import brawl.nexuscore.NexusController;
-import brawl.nexuscore.events.NexusBrokenEvent;
+import brawl.nexuscore.events.NexusRemovedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -16,8 +16,8 @@ public class BlockExplodeListener implements Listener {
         ) {
            if (NexusController.nexusBlocks.contains(block.getLocation()))
            {
-               NexusBrokenEvent nexusBroken = new NexusBrokenEvent(block.getLocation());
-               Bukkit.getPluginManager().callEvent(nexusBroken);
+               NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(block.getLocation());
+               Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
            }
         }
 

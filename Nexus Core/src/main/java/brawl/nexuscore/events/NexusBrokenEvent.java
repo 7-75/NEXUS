@@ -2,18 +2,22 @@ package brawl.nexuscore.events;
 
 import brawl.nexuscore.NexusController;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class NexusBrokenEvent extends Event implements Cancellable {
+public class NexusBrokenEvent extends BlockBreakEvent implements Cancellable {
 
         private final Location  location;
-        private boolean isCancelled;
+        private boolean         isCancelled;
+        private final Player    player;
 
-        public NexusBrokenEvent(Location location){
+        public NexusBrokenEvent(Location location, Player player){
+            super(location.getBlock(), player);
             this.location = location;
+            this.player   = player;
             this.isCancelled = false;
             NexusController.nexusBlocks.remove(location);
         }

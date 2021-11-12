@@ -1,7 +1,7 @@
 package brawl.griefpreventionmodule.listeners;
 
 import brawl.griefpreventionmodule.utils.GriefPreventionOperations;
-import brawl.nexuscore.events.NexusBrokenEvent;
+import brawl.nexuscore.events.NexusRemovedEvent;
 import brawl.nexuscore.util.WorldOperations;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.events.ClaimDeletedEvent;
@@ -26,8 +26,8 @@ public class ClaimDeletedListener implements Listener {
         for (Location location: nexusLocations
              ) {
 
-            NexusBrokenEvent nexusBrokenEvent = new NexusBrokenEvent(location);
-            Bukkit.getPluginManager().callEvent(nexusBrokenEvent);
+            NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(location);
+            Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
         }
 
     }

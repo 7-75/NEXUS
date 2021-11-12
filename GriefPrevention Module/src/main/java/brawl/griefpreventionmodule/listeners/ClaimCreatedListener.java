@@ -20,10 +20,12 @@ public class ClaimCreatedListener implements Listener {
         Location lesserBoundaryCorner = event.getClaim().getLesserBoundaryCorner();
         Location greaterBoundaryCorner = event.getClaim().getGreaterBoundaryCorner();
 
-        Location nexusLocation = WorldOperations.addNexusToChunk(
+        Location nexusLocation = WorldOperations.getCenterLocation(
                 greaterBoundaryCorner,
                 lesserBoundaryCorner
         );
+        WorldOperations.addNexusToLocation(nexusLocation);
+
 
         int radius = WorldOperations.getRadius(
                 lesserBoundaryCorner,

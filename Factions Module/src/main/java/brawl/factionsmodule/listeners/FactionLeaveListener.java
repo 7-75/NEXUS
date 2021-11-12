@@ -1,8 +1,9 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
-import brawl.nexuscore.events.NexusBrokenEvent;
+import brawl.nexuscore.events.NexusRemovedEvent;
 import brawl.nexuscore.util.NexusOperations;
+import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FPlayerLeaveEvent;
@@ -28,14 +29,15 @@ public class FactionLeaveListener implements Listener {
         FPlayer     fPlayer             = event.getfPlayer();
         Faction     faction             = fPlayer.getFaction();
         Player      player              = fPlayer.getPlayer();
-        Location location            = faction.getHome();
+        Location    location            = faction.getHome();
 
         if (faction.getFPlayers().size() == 1)
         {
             NexusOperations.removeFromPlayer(player);
 
-            NexusBrokenEvent nexusBrokenEvent = new NexusBrokenEvent(location);
-            Bukkit.getPluginManager().callEvent(nexusBrokenEvent);
+            Location nexusLocation      = WorldOperations.getCenterLocation(location.getChunk());
+            NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
+            Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
 
         }
 

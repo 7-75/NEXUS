@@ -22,7 +22,7 @@ public class WorldOperations {
     }
 
 
-    public static Location addNexusToChunk(Location topLocation, Location bottomLocation)
+    public static Location getCenterLocation(Location topLocation, Location bottomLocation)
     {
 
         World world = topLocation.getWorld();
@@ -35,10 +35,15 @@ public class WorldOperations {
         z = (int) (topLocation.getZ()+bottomLocation.getZ())/2;
         y = getHighestY(world,x,z)+1;
 
-        Location centerLocation = new Location(world, x, y, z);
-        addNexusToLocation(centerLocation);
+        return new Location(world, x, y, z);
+    }
 
-        return centerLocation;
+    public static Location getCenterLocation(Chunk c)
+    {
+        Location center = new Location(c.getWorld(), c.getX() << 4, 64, c.getZ() << 4).add(8, 0, 8);
+        center.setY(getHighestY(c.getWorld(),center.getBlockX(),center.getBlockZ()) + 1);
+
+        return center;
     }
 
     public static void addNexusToLocation(Location location)
@@ -62,15 +67,6 @@ public class WorldOperations {
             i--;
         }
         return 0;
-    }
-
-    public static Location addNexusToChunk(Chunk c)
-    {
-        Location center = new Location(c.getWorld(), c.getX() << 4, 64, c.getZ() << 4).add(8, 0, 8);
-        center.setY(getHighestY(c.getWorld(),center.getBlockX(),center.getBlockZ()) + 1);
-        addNexusToLocation(center);
-
-        return center;
     }
 
     public static int getRadius(Location lesserBoundaryCorner, Location greaterBoundaryCorner)

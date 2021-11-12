@@ -6,7 +6,7 @@
 
     <groupId>brawl</groupId>
     <artifactId>MagicModule</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.2-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>MagicModule</name>
@@ -74,16 +74,9 @@
         </dependency>
         <dependency>
             <groupId>brawl.nexuscore</groupId>
-            <artifactId>NexusCore-1.0-SNAPSHOT</artifactId>
-            <version>1.1-RELEASE</version>
-            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.1-RELEASE.jar</systemPath>
-            <scope>system</scope>
-        </dependency>
-        <dependency>
-            <groupId>brawl.griefprevention</groupId>
-            <artifactId>GriefPreventionModule-1.0-SNAPSHOT.jar</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <systemPath>${basedir}/../GriefPrevention Module/target/GriefPreventionModule-1.0-SNAPSHOT.jar</systemPath>
+            <artifactId>NexusCore-1.2-RELEASE</artifactId>
+            <version>1.2-RELEASE</version>
+            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.2-RELEASE.jar</systemPath>
             <scope>system</scope>
         </dependency>
         <dependency>

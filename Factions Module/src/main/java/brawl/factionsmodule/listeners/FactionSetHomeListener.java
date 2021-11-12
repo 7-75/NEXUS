@@ -44,11 +44,19 @@ public class FactionSetHomeListener implements Listener {
         }
 
         String commandArgument = message.split(" ")[1];
-        if (Objects.equals(commandArgument, "sethome") && !autoCenterChunkMode)
+
+        if (!Objects.equals(commandArgument, "sethome"))
+        {
+            return;
+        }
+
+        if (!autoCenterChunkMode)
         {
             player.sendMessage(cannotSetHomeManuallyError);
             return;
         }
+
+
 
         Location playerLocation = event.getPlayer().getLocation();
         FPlayer fPlayer         = FPlayers.getInstance().getByPlayer(player);
@@ -61,12 +69,17 @@ public class FactionSetHomeListener implements Listener {
         if(!role.isAtLeast(Role.MODERATOR))
             return;
 
-        Location chunkCenterLocation = WorldOperations.addNexusToChunk(playerLocation.getChunk());
+
+        Location oldChunkCenterLocation = WorldOperations.getCenterLocation(fPlayer.getFaction().getHome().getChunk());
+        WorldOperations.removeFromLocation(oldChunkCenterLocation);
+
+        Location chunkCenterLocation = WorldOperations.getCenterLocation(playerLocation.getChunk());
+        WorldOperations.addNexusToLocation(chunkCenterLocation);
 
         NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(chunkCenterLocation);
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);
 
-        faction.setHome(chunkCenterLocation);
+        faction.setHome(playerLocation);
         event.setCancelled(true);
     }
 }
