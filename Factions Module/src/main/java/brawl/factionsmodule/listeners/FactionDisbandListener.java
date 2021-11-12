@@ -36,7 +36,6 @@ public class FactionDisbandListener implements Listener {
         else
         {
             Location nexusLocation = WorldOperations.getNexusAtChunk(location.getChunk());
-
             NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
             Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
         }

@@ -1,6 +1,7 @@
 package brawl.nexuscore.events;
 
 import brawl.nexuscore.NexusController;
+import brawl.nexuscore.util.WorldOperations;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.jetbrains.annotations.NotNull;
@@ -39,6 +40,7 @@ public class NexusPlacedEvent extends BlockPlaceEvent {
         {
             event.setCancelled(true);
             NexusController.nexusBlocks.remove(event.getBlock().getLocation());
+            WorldOperations.removeFromLocation(event.getBlock().getLocation());
         }
         this.isCancelled = isCancelled;
     }

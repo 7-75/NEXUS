@@ -3,6 +3,7 @@ package brawl.magicmodule;
 import brawl.magicmodule.listeners.NexusCreatedListener;
 import brawl.magicmodule.listeners.NexusPlacedListener;
 import brawl.magicmodule.listeners.NexusBrokenListener;
+import brawl.magicmodule.listeners.NexusRemovedListener;
 import brawl.magicmodule.util.MagicOperations;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import org.bukkit.Bukkit;
@@ -40,6 +41,7 @@ public final class MagicModule extends JavaPlugin {
         pluginManager.registerEvents(new NexusPlacedListener(),this);
         pluginManager.registerEvents(new NexusBrokenListener(),this);
         pluginManager.registerEvents(new NexusCreatedListener(),this);
+        pluginManager.registerEvents(new NexusRemovedListener(),this);
     }
 
 

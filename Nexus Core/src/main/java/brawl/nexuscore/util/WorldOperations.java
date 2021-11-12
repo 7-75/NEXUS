@@ -43,11 +43,13 @@ public class WorldOperations {
         return new Location(world, x, y, z);
     }
 
-    public static Location getCenterLocation(Chunk c)
+    public static Location getChunkCenter(Chunk c)
     {
-        Location center = new Location(c.getWorld(), c.getX() << 4, 64, c.getZ() << 4).add(8, 0, 8);
-        center.setY(getHighestY(c.getWorld(),center.getBlockX(),center.getBlockZ()) + 1);
+        Location center     = new Location(c.getWorld(), c.getX() << 4, 64, c.getZ() << 4).add(8, 0, 8);
 
+        int      centerY    = getHighestY(c.getWorld(),center.getBlockX(),center.getBlockZ()) + 1;
+
+        center.setY(centerY);
         return center;
     }
 
@@ -80,8 +82,13 @@ public class WorldOperations {
         int i = 255;
         while (i>0){
             Location tempLocation = new Location(world, x, i, z);
-            if(NexusController.nexusBlocks.stream().anyMatch(location -> location.equals(tempLocation)))
+            if(NexusController.nexusBlocks
+                    .stream()
+                    .filter(Objects::nonNull)
+                    .anyMatch(location -> location.equals(tempLocation)))
+            {
                 return i;
+            }
             i--;
         }
         return -1;

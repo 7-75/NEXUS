@@ -1,6 +1,7 @@
 package brawl.nexuscore.events;
 
 import brawl.nexuscore.NexusController;
+import brawl.nexuscore.util.WorldOperations;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -35,6 +36,7 @@ public class NexusBrokenEvent extends BlockBreakEvent implements Cancellable {
             {
                 event.setCancelled(true);
                 NexusController.nexusBlocks.add(event.getBlock().getLocation());
+                WorldOperations.addNexusToLocation(event.getBlock().getLocation());
             }
         }
 

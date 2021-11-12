@@ -35,7 +35,8 @@ public class NexusCreatedEvent extends Event implements Cancellable {
 
         if (isCancelled)
         {
-            NexusController.nexusBlocks.add(location);
+            NexusController.nexusBlocks.remove(location);
+            WorldOperations.addNexusToLocation(getLocation());
         }
     }
 

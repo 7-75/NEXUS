@@ -3,7 +3,6 @@ package brawl.factionsmodule.listeners;
 import brawl.factionsmodule.FactionsModuleController;
 import brawl.factionsmodule.util.FactionsOperations;
 import brawl.nexuscore.events.NexusCreatedEvent;
-import brawl.nexuscore.events.NexusRemovedEvent;
 import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
@@ -69,13 +68,10 @@ public class FactionSetHomeListener implements Listener {
 
         if(faction.hasHome())
         {
-            Location oldChunkCenterLocation = WorldOperations.getCenterLocation(fPlayer.getFaction().getHome().getChunk());
-            System.out.println("OldCenter:" + oldChunkCenterLocation);
-            NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(oldChunkCenterLocation);
-            Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
+            FactionsOperations.removeNexus(faction);
         }
 
-        Location chunkCenterLocation = WorldOperations.getCenterLocation(playerLocation.getChunk());
+        Location chunkCenterLocation = WorldOperations.getChunkCenter(playerLocation.getChunk());
         NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(chunkCenterLocation, 0.0);
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);
     }

@@ -35,6 +35,7 @@ public class FactionsOperations {
     public static void removeNexus(Faction faction)
     {
         Location location       = faction.getHome();
+
         Location nexusLocation  = WorldOperations.getNexusAtChunk(location.getChunk());
 
         NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
