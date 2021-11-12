@@ -57,8 +57,6 @@ public class FactionSetHomeListener implements Listener {
             return;
         }
 
-
-
         Location playerLocation = event.getPlayer().getLocation();
         FPlayer fPlayer         = FPlayers.getInstance().getByPlayer(player);
         Faction faction         = fPlayer.getFaction();
@@ -66,20 +64,19 @@ public class FactionSetHomeListener implements Listener {
 
         if(!FactionsOperations.isInsideClaim(playerLocation, faction))
             return;
-
         if(!role.isAtLeast(Role.MODERATOR))
             return;
 
         if(faction.hasHome())
         {
             Location oldChunkCenterLocation = WorldOperations.getCenterLocation(fPlayer.getFaction().getHome().getChunk());
+            System.out.println("OldCenter:" + oldChunkCenterLocation);
             NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(oldChunkCenterLocation);
             Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
         }
 
         Location chunkCenterLocation = WorldOperations.getCenterLocation(playerLocation.getChunk());
-        NexusCreatedEvent nexusCreatedEvent
-                = new NexusCreatedEvent(chunkCenterLocation, 0.0);
+        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(chunkCenterLocation, 0.0);
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);
     }
 }

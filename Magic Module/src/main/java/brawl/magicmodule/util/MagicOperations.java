@@ -12,6 +12,8 @@ public class MagicOperations {
 
     public static void addMagicBlockToMap(Location location, Double parameterValue)
     {
+        System.out.println(location);
+
         ConfigurationSection config;
         config = new MemoryConfiguration();
         config.set("cast.spells", spellTemplateKey + " " + parameterToAlterKey + " " + parameterValue);
@@ -26,6 +28,9 @@ public class MagicOperations {
 
     public static  void removeMagicBlockFromMap(Location location)
     {
+
+        System.out.println("Location Magic Block:" + location);
+        System.out.println("Magic Block Exists:" + magicBlockExistsAtLocation(location));
 
         if (!magicBlockExistsAtLocation(location))
             return;

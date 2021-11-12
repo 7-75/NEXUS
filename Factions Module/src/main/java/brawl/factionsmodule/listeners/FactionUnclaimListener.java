@@ -1,14 +1,12 @@
 package brawl.factionsmodule.listeners;
 
 import brawl.factionsmodule.FactionsModuleController;
-import brawl.nexuscore.events.NexusRemovedEvent;
+import brawl.factionsmodule.util.FactionsOperations;
 import brawl.nexuscore.util.NexusOperations;
-import brawl.nexuscore.util.WorldOperations;
 import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.LandUnclaimEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,13 +37,8 @@ public class FactionUnclaimListener implements Listener {
         FLocation   fLocation                   = event.getLocation();
 
 
-        System.out.println("test0: check");
-
-
         if (!faction.hasHome())
             return;
-
-        System.out.println("test1: check");
 
         Location    location                    = faction.getHome();
         boolean     NexusIsInChunk              = fLocation.isInChunk(location);
@@ -53,8 +46,6 @@ public class FactionUnclaimListener implements Listener {
         if (!NexusIsInChunk)
             return;
 
-
-        System.out.println("test2: check");
 
         if (!playerWasAlreadyWarned)
         {
@@ -64,29 +55,16 @@ public class FactionUnclaimListener implements Listener {
             return;
         }
 
-
-        System.out.println("test3: check");
-
         FactionsModuleController.board.unclaimAll(faction.getId());
 
-        System.out.println("test4: check");
+        FactionsOperations.removeNexus(faction);
 
-        Location nexusLocation = WorldOperations.getNexusAtChunk(location.getChunk());
-
-        System.out.println(nexusLocation);
-
-        NexusRemovedEvent nexusRemovedEvent = new NexusRemovedEvent(nexusLocation);
-        Bukkit.getPluginManager().callEvent(nexusRemovedEvent);
-
-        if (autoCenterChunkMode) {
+        if (autoCenterChunkMode)
             return;
-        }
 
-        try
-        {
+        try{
             NexusOperations.addToInventory(player);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             player.sendMessage(e.getMessage());
             event.setCancelled(true);
         }

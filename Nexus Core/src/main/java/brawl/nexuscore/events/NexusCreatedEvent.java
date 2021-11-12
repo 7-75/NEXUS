@@ -16,7 +16,7 @@ public class NexusCreatedEvent extends Event implements Cancellable {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
-    public NexusCreatedEvent(Location location, Double adaptiveParameterValue)
+    public NexusCreatedEvent(Location location, double adaptiveParameterValue)
     {
         this.location = location;
         this.adaptiveParameterValue = adaptiveParameterValue;

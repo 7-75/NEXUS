@@ -31,7 +31,7 @@ public class ClaimCreatedListener implements Listener {
                 greaterBoundaryCorner
                 );
 
-        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(nexusLocation, (double) radius);
+        NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(nexusLocation, radius);
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);
     }
 }
