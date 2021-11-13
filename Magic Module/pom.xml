@@ -6,7 +6,7 @@
 
     <groupId>brawl</groupId>
     <artifactId>MagicModule</artifactId>
-    <version>1.2-RELEASE</version>
+    <version>1.3-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>MagicModule</name>
@@ -74,9 +74,9 @@
         </dependency>
         <dependency>
             <groupId>brawl.nexuscore</groupId>
-            <artifactId>NexusCore-1.2-RELEASE</artifactId>
-            <version>1.2-RELEASE</version>
-            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.2-RELEASE.jar</systemPath>
+            <artifactId>NexusCore</artifactId>
+            <version>1.3-RELEASE</version>
+            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.3-RELEASE.jar</systemPath>
             <scope>system</scope>
         </dependency>
         <dependency>

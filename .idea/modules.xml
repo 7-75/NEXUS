@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/GriefPrevention Module/GriefPrevention Module.iml" filepath="$PROJECT_DIR$/GriefPrevention Module/GriefPrevention Module.iml" />
       <module fileurl="file://$PROJECT_DIR$/Magic Module/Magic Module.iml" filepath="$PROJECT_DIR$/Magic Module/Magic Module.iml" />
       <module fileurl="file://$PROJECT_DIR$/Nexus Core/Nexus Core.iml" filepath="$PROJECT_DIR$/Nexus Core/Nexus Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Turrets Module/Turrets Module.iml" filepath="$PROJECT_DIR$/Turrets Module/Turrets Module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vault Module/Vault Module.iml" filepath="$PROJECT_DIR$/Vault Module/Vault Module.iml" />
     </modules>
   </component>
 </project>

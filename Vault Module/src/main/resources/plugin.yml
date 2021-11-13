@@ -1,0 +1,9 @@
+name: Vault Module
+version: '${project.version}'
+main: brawl.vaultmodule.VaultModule
+api-version: 1.17
+prefix: Vault Module
+depend: [ NexusCore, Vault ]
+authors: [ millemila ]
+description: Vault module to tax Nexus Usage
+website: brawlmc.com

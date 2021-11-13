@@ -1,0 +1,3 @@
+flatCostToCreateNexus: 0.00;
+costToUpKeepNexus: 1.00;
+runTaxationEveryXTicks: 120000;

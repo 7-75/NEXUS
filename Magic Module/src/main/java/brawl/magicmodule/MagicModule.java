@@ -4,6 +4,7 @@ import brawl.magicmodule.listeners.NexusCreatedListener;
 import brawl.magicmodule.listeners.NexusPlacedListener;
 import brawl.magicmodule.listeners.NexusBrokenListener;
 import brawl.magicmodule.listeners.NexusRemovedListener;
+import brawl.magicmodule.util.IOOperations;
 import brawl.magicmodule.util.MagicOperations;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import org.bukkit.Bukkit;
@@ -19,6 +20,8 @@ public final class MagicModule extends JavaPlugin {
     public void onEnable() {
         MagicModuleController.initialize(this, getMagicAPI());
         writeDefaultConfig();
+        IOOperations.createNexusBlockConfig();
+        IOOperations.createNexusSpellConfig();
         registerListeners();
     }
 

@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>brawl</groupId>
-    <artifactId>FactionsModule</artifactId>
-    <version>1.3-RELEASE</version>
+    <artifactId>TurretsModule</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>FactionsModule</name>
+    <name>TurretsModule</name>
 
-    <description>Factions add-on for NexusCore</description>
+    <description>Add turrets to guard your nexus</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -56,33 +56,16 @@
 
     <repositories>
         <repository>
+            <id>papermc-repo</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+        <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>factions-repo</id>
-            <url>https://ci.ender.zone/plugin/repository/everything/</url>
-        </repository>
-        <repository>
-            <id>papermc</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>com.massivecraft</groupId>
-            <artifactId>Factions</artifactId>
-            <version>1.6.9.5-U0.6.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>brawl.nexuscore</groupId>
-            <artifactId>NexusCore</artifactId>
-            <version>1.3-RELEASE</version>
-            <systemPath>${basedir}/../Nexus Core/target/NexusCore-1.3-RELEASE.jar</systemPath>
-            <scope>system</scope>
-        </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>

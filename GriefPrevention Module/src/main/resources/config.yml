@@ -1,0 +1,2 @@
+minimumClaimedArea: -1
+areaTooSmallError: "Claimed Area is too small to create a Nexus."

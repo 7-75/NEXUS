@@ -6,7 +6,7 @@
 
     <groupId>brawl</groupId>
     <artifactId>NexusCore</artifactId>
-    <version>1.2-RELEASE</version>
+    <version>1.3-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>NexusCore</name>

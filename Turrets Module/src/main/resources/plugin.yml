@@ -1,0 +1,9 @@
+name: TurretsModule
+version: '${project.version}'
+main: brawl.turretsmodule.TurretsModule
+api-version: 1.17
+prefix: Turrets Addon
+depend: [ NexusCore ]
+authors: [ millemila ]
+description: Add turrets to guard your nexus
+website: brawlmc.com

@@ -1,0 +1,6 @@
+Nexus:
+  name: Nexus Magic Block
+  interval: 1000
+  cast:
+    spells: nexusShellSpell
+    undo_all: true

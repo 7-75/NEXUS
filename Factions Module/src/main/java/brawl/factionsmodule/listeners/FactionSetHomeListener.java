@@ -70,7 +70,6 @@ public class FactionSetHomeListener implements Listener {
         {
             FactionsOperations.removeNexus(faction);
         }
-
         Location chunkCenterLocation = WorldOperations.getChunkCenter(playerLocation.getChunk());
         NexusCreatedEvent nexusCreatedEvent = new NexusCreatedEvent(chunkCenterLocation, 0.0);
         Bukkit.getPluginManager().callEvent(nexusCreatedEvent);

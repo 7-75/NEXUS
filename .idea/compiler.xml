@@ -10,6 +10,8 @@
         <module name="GriefPrevention Module" />
         <module name="Nexus Core" />
         <module name="Magic Module" />
+        <module name="Vault Module" />
+        <module name="Turrets Module" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +24,8 @@
       <module name="NexusCore2" target="1.8" />
       <module name="NexusFactions" target="10" />
       <module name="NexusFactionsAddon" target="1.8" />
+      <module name="Turrets Module" target="1.8" />
+      <module name="Vault Module" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
