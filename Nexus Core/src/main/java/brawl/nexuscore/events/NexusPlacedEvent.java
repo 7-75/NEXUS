@@ -4,7 +4,6 @@ import brawl.nexuscore.NexusController;
 import brawl.nexuscore.util.WorldOperations;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.jetbrains.annotations.NotNull;
 
 public class NexusPlacedEvent extends BlockPlaceEvent {
 
@@ -14,14 +13,9 @@ public class NexusPlacedEvent extends BlockPlaceEvent {
     private static final HandlerList HANDLERS = new HandlerList();
 
     public NexusPlacedEvent(BlockPlaceEvent event) {
-        super(event.getBlockPlaced(),event.getBlockReplacedState(),event.getBlockPlaced(),event.getItemInHand(),event.getPlayer(),event.canBuild(),event.getHand());
+        super(event.getBlockPlaced(),event.getBlockReplacedState(),event.getBlockPlaced(),event.getItemInHand(),event.getPlayer(),event.canBuild());
         this.event = event;
         NexusController.nexusBlocks.add(event.getBlock().getLocation());
-    }
-
-    @Override
-    public @NotNull HandlerList getHandlers() {
-        return HANDLERS;
     }
 
     public static HandlerList getHandlerList() {

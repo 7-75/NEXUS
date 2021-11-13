@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.jetbrains.annotations.NotNull;
 
 public class NexusBrokenEvent extends BlockBreakEvent implements Cancellable {
 
@@ -38,11 +37,6 @@ public class NexusBrokenEvent extends BlockBreakEvent implements Cancellable {
                 NexusController.nexusBlocks.add(event.getBlock().getLocation());
                 WorldOperations.addNexusToLocation(event.getBlock().getLocation());
             }
-        }
-
-        @Override
-        public @NotNull HandlerList getHandlers() {
-            return HANDLERS;
         }
 
         public static HandlerList getHandlerList() {

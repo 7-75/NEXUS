@@ -28,6 +28,7 @@ public class BlockBreakListener implements Listener{
 
         NexusBrokenEvent nexusBroken = new NexusBrokenEvent(event);
         Bukkit.getPluginManager().callEvent(nexusBroken);
-        event.setDropItems(false);
+        event.getBlock().setType(Material.AIR);
+        event.setCancelled(true);
     }
 }

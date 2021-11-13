@@ -8,7 +8,6 @@ import com.massivecraft.factions.FPlayers;
 import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.perms.Role;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -39,7 +38,7 @@ public class NexusDestroyedListener implements Listener {
         String factionNexusWasBrokenMessage =
                 FactionsModuleController.plugin.getConfig().getString("factionNexusWasBrokenMessage");
 
-        Bukkit.getServer().broadcast(Component.text(factionTag + factionNexusWasBrokenMessage));
+        Bukkit.getServer().broadcastMessage(factionTag + factionNexusWasBrokenMessage);
 
     }
 }

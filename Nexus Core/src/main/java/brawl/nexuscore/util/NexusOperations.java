@@ -1,14 +1,12 @@
 package brawl.nexuscore.util;
 
 import brawl.nexuscore.NexusController;
-import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class NexusOperations {
@@ -36,9 +34,9 @@ public class NexusOperations {
     {
         ItemStack i = new ItemStack(Objects.requireNonNull(NexusController.nexusBlockMaterial));
         ItemMeta im = i.getItemMeta();
-        List<Component> lore = new ArrayList<>();
-        lore.add(Component.text(NexusController.nexusItemLore));
-        im.lore(lore);
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(NexusController.nexusItemLore);
+        im.setLore(lore);
         i.setItemMeta(im);
         return i;
     }
@@ -48,6 +46,6 @@ public class NexusOperations {
     {
         if (!itemStack.getItemMeta().hasLore())
             return false;
-        return Objects.requireNonNull(itemStack.lore()).contains(Component.text(NexusController.nexusItemLore));
+        return Objects.requireNonNull(itemStack.getItemMeta().getLore()).contains(NexusController.nexusItemLore);
     }
 }

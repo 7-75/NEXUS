@@ -6,7 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.NotNull;
 
 public class NexusCreatedEvent extends Event implements Cancellable {
 
@@ -40,11 +39,6 @@ public class NexusCreatedEvent extends Event implements Cancellable {
         }
     }
 
-    @Override
-    public @NotNull HandlerList getHandlers() {
-        return HANDLERS;
-    }
-
     public static HandlerList getHandlerList() {
         return HANDLERS;
     }
@@ -57,5 +51,10 @@ public class NexusCreatedEvent extends Event implements Cancellable {
     public Location getLocation()
     {
         return this.location;
+    }
+
+    @Override
+    public HandlerList getHandlers() {
+        return null;
     }
 }

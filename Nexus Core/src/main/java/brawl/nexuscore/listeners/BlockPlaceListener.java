@@ -17,7 +17,7 @@ public class BlockPlaceListener implements Listener {
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
         Block placedBlock = event.getBlockPlaced();
-        Material placedMaterial = placedBlock.getBlockData().getMaterial();
+        Material placedMaterial = placedBlock.getType();
         if (placedMaterial != NexusOperations.nexusBlockFactory().getType()) {
             return;
         }
