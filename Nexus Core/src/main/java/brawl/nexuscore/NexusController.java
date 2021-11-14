@@ -15,10 +15,11 @@ public class NexusController {
     public static Material                          nexusBlockMaterial;
 
     public static void initialise(JavaPlugin plugin) {
-        NexusController.plugin = plugin;
-        nexusBlockMaterialKey = plugin.getConfig().getString("nexusBlockMaterial");
-        nexusItemLore = plugin.getConfig().getString("nexusItemLore");
-        nexusBlocks = new ArrayList<>();
-        nexusBlockMaterial = Material.getMaterial(nexusBlockMaterialKey);
+        NexusController.plugin      = plugin;
+        nexusBlockMaterialKey       = plugin.getConfig().getString("nexusBlockMaterial");
+        nexusItemLore               = plugin.getConfig().getString("nexusItemLore");
+        nexusBlocks                 = new ArrayList<>();
+        nexusBlockMaterial          = Material.getMaterial(nexusBlockMaterialKey);
+
     }
 }
